@@ -2,7 +2,7 @@ from random import randint
 
 import Source.Race
 from Source.Context import EXPANSION_DISTANCE
-from pyWorld import PointDistRound
+from Source.Geometry import PointDistRound
 
 
 def NewSite(Civ, Origin, World, Chars, Colors):

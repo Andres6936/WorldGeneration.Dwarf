@@ -4,13 +4,13 @@ from random import randint
 import tcod as libtcod
 
 from Source.Context import WORLD_WIDTH, WORLD_HEIGHT
+from Source.Geometry import PoleGen
 from Source.Precipitation import Percipitaion
 from Source.Prosperity import Prosperity
 from Source.River import RiverGen
 from Source.Tectonic import TectonicGen
 from Source.Temperature import Temperature
 from Source.Tile import Tile
-from pyWorld import PoleGen
 
 
 def MasterWorldGen():  # ------------------------------------------------------- * MASTER GEN * -------------------------------------------------------------
