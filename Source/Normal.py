@@ -2,7 +2,7 @@ from random import randint
 
 import tcod as libtcod
 
-from pyWorld import WORLD_HEIGHT, WORLD_WIDTH
+from Source.Context import WORLD_WIDTH, WORLD_HEIGHT
 
 
 def NormalMap(

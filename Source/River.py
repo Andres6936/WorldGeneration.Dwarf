@@ -1,6 +1,7 @@
 from random import randint
 
-from pyWorld import WORLD_WIDTH, WORLD_HEIGHT, LowestNeighbour, MIN_RIVER_LENGHT
+from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, MIN_RIVER_LENGHT
+from pyWorld import LowestNeighbour
 
 
 def RiverGen(World):

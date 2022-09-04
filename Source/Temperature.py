@@ -1,6 +1,6 @@
 import tcod as libtcod
 
-from pyWorld import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_HEIGHT
+from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_HEIGHT
 
 
 def TempGradMap(

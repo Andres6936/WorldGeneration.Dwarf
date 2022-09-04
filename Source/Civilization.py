@@ -3,10 +3,10 @@ from random import randint
 import Source.Army
 import Source.Race
 from Source.Army import Army
+from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS, CIV_MAX_SITES, WAR_DISTANCE
 from Source.Generation import NewSite
 from Source.War import War
-from pyWorld import WORLD_WIDTH, WORLD_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS, CIV_MAX_SITES, PointDistRound, WAR_DISTANCE, \
-    Wars
+from pyWorld import PointDistRound, Wars
 
 
 def SetupCivs(Civs, World, Chars, Colors):

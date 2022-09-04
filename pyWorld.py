@@ -6,6 +6,7 @@ import tcod as libtcod
 
 from Source.Biome import BiomeMap
 from Source.Civilization import SetupCivs, ProcessCivs, Civ
+from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS
 from Source.Drainage import DrainageGradMap
 from Source.Generation import MasterWorldGen
 from Source.GobernmentType import GovernmentType
@@ -20,20 +21,6 @@ from Source.Terrain import TerrainMap
 pr = cProfile.Profile()
 pr.enable()
 
-WORLD_WIDTH = 200
-WORLD_HEIGHT = 80
-
-SCREEN_WIDTH = 200
-SCREEN_HEIGHT = 80
-
-CIVILIZED_CIVS = 2
-TRIBAL_CIVS = 2
-
-MIN_RIVER_LENGHT = 3
-
-CIV_MAX_SITES = 20
-EXPANSION_DISTANCE = 10
-WAR_DISTANCE = 8
 
 ##################################################################################### - Functions - #####################################################################################
 

@@ -1,6 +1,7 @@
 import tcod as libtcod
 
-from pyWorld import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_HEIGHT, Palette
+from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_HEIGHT
+from pyWorld import Palette
 
 
 def TerrainMap(World):

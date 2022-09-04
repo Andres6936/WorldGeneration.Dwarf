@@ -5,13 +5,14 @@ import tcod as libtcod
 
 import Source.Race
 from Source.Civilization import CivSite
+from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, EXPANSION_DISTANCE
 from Source.Precipitation import Percipitaion
 from Source.Prosperity import Prosperity
 from Source.River import RiverGen
 from Source.Tectonic import TectonicGen
 from Source.Temperature import Temperature
 from Source.Tile import Tile
-from pyWorld import WORLD_WIDTH, WORLD_HEIGHT, PoleGen, PointDistRound, EXPANSION_DISTANCE
+from pyWorld import PoleGen, PointDistRound
 
 
 def MasterWorldGen():  # ------------------------------------------------------- * MASTER GEN * -------------------------------------------------------------
