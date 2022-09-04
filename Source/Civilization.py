@@ -1,7 +1,12 @@
 from random import randint
 
-from pyWorld import WORLD_WIDTH, WORLD_HEIGHT, CivSite, CIVILIZED_CIVS, TRIBAL_CIVS, CIV_MAX_SITES, PointDistRound, WAR_DISTANCE, Wars, War, Army
+import Source.Army
+import Source.Race
+from Source.Army import Army
 from Source.Generation import NewSite
+from Source.War import War
+from pyWorld import WORLD_WIDTH, WORLD_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS, CIV_MAX_SITES, PointDistRound, WAR_DISTANCE, \
+    Wars
 
 
 def SetupCivs(Civs, World, Chars, Colors):
@@ -16,8 +21,8 @@ def SetupCivs(Civs, World, Chars, Colors):
 
         for i in range(WORLD_WIDTH):
             for j in range(WORLD_HEIGHT):
-                for g in range(len(Civs[x].Race.PrefBiome)):
-                    if World[i][j].biomeID == Civs[x].Race.PrefBiome[g]:
+                for g in range(len(Source.Race.Race.PrefBiome)):
+                    if World[i][j].biomeID == Source.Race.Race.PrefBiome[g]:
                         Civs[x].SuitableSites.append(CivSite(i, j, "", 1, 0))
 
         rand = randint(0, len(Civs[x].SuitableSites) - 1)
@@ -33,7 +38,7 @@ def SetupCivs(Civs, World, Chars, Colors):
         FinalProsperity = World[X][Y].prosperity * 150
         if World[X][Y].hasRiver:
             FinalProsperity = FinalProsperity * 1.5
-        PopCap = 4 * Civs[x].Race.ReproductionSpeed + FinalProsperity
+        PopCap = 4 * Source.Race.Race.ReproductionSpeed + FinalProsperity
         PopCap = PopCap * 2  # Capital Bonus
         PopCap = round(PopCap)
 
@@ -61,7 +66,7 @@ def ProcessCivs(World, Civs, Chars, Colors, Month):
     for x in range(CIVILIZED_CIVS + TRIBAL_CIVS):
 
         print(Civs[x].Name)
-        print(Civs[x].Race.Name)
+        print(Source.Race.Race.Name)
 
         Civs[x].TotalPopulation = 0
 
@@ -69,7 +74,7 @@ def ProcessCivs(World, Civs, Chars, Colors, Month):
         for y in range(len(Civs[x].Sites)):
 
             # Population
-            NewPop = int(round(Civs[x].Sites[y].Population * Civs[x].Race.ReproductionSpeed / 1500))
+            NewPop = int(round(Civs[x].Sites[y].Population * Source.Race.Race.ReproductionSpeed / 1500))
 
             if Civs[x].Sites[y].Population > Civs[x].Sites[y].popcap / 2:
                 NewPop /= 6
@@ -102,20 +107,62 @@ def ProcessCivs(World, Civs, Chars, Colors, Month):
                             # Start War and form armies if dot have army yet
                             Wars.append(War(Civs[x], Civs[a]))
                             if Civs[a].atWar == False:  # if not already at war form new army
-                                Civs[a].Army = Army(Civs[a].Sites[0].x,
-                                                    Civs[a].Sites[0].y,
-                                                    Civs[a],
-                                                    Civs[a].TotalPopulation * Civs[a].Government.Militarization / 100)
+                                Source.Army.Army = Army(Civs[a].Sites[0].x,
+                                                        Civs[a].Sites[0].y,
+                                                        Civs[a],
+                                                        Civs[a].TotalPopulation * Civs[
+                                                            a].Government.Militarization / 100)
                                 Civs[a].atWar = True
                             if Civs[x].atWar == False:  # if not already at war form new army
-                                Civs[x].Army = Army(Civs[x].Sites[0].x,
-                                                    Civs[x].Sites[0].y,
-                                                    Civs[x],
-                                                    Civs[x].TotalPopulation * Civs[x].Government.Militarization / 100)
+                                Source.Army.Army = Army(Civs[x].Sites[0].x,
+                                                        Civs[x].Sites[0].y,
+                                                        Civs[x],
+                                                        Civs[x].TotalPopulation * Civs[
+                                                            x].Government.Militarization / 100)
                                 Civs[x].atWar = True
 
             print("X:", Civs[x].Sites[y].x, "Y:", Civs[x].Sites[y].y, "Population:", Civs[x].Sites[y].Population)
 
-        print(Civs[x].Army.x, Civs[x].Army.y, Civs[x].Army.Size, '\n')
+        print(Source.Army.Army.x, Source.Army.Army.y, Source.Army.Army.Size, '\n')
 
     return
+
+
+class CivSite:
+
+    def __init__(self, x, y, category, suitable, popcap):
+        self.x = x
+        self.y = y
+        self.category = category
+        self.suitable = suitable
+        self.popcap = popcap
+
+    Population = 0
+
+    isCapital = False
+
+
+class Civ:
+
+    def __init__(self, Race, Name, Government, Color, Flag, Aggression):
+        self.Name = Name
+        self.Race = Race
+        self.Government = Government
+        self.Color = Color
+        self.Flag = Flag
+        self.Aggression = Race.Aggressiveness + Government.Aggressiveness
+
+    def PrintInfo(self):
+        print(self.Name)
+        print(self.Race.Name)
+        print(self.Government.Name)
+        print('Aggression:', self.Aggression)
+        print('Suitable Sites:', len(self.SuitableSites), '\n')
+
+    Sites = []
+    SuitableSites = []
+
+    atWar = False
+
+    Army = Army(None, None, None, None)
+    TotalPopulation = 0

@@ -3,12 +3,15 @@ from random import randint
 
 import tcod as libtcod
 
-from pyWorld import WORLD_WIDTH, WORLD_HEIGHT, PoleGen, Tile, PointDistRound, EXPANSION_DISTANCE, CivSite
-from Source.Tectonic import TectonicGen
-from Source.Temperature import Temperature
+import Source.Race
+from Source.Civilization import CivSite
 from Source.Precipitation import Percipitaion
 from Source.Prosperity import Prosperity
 from Source.River import RiverGen
+from Source.Tectonic import TectonicGen
+from Source.Temperature import Temperature
+from Source.Tile import Tile
+from pyWorld import WORLD_WIDTH, WORLD_HEIGHT, PoleGen, PointDistRound, EXPANSION_DISTANCE
 
 
 def MasterWorldGen():  # ------------------------------------------------------- * MASTER GEN * -------------------------------------------------------------
@@ -189,7 +192,7 @@ def NewSite(Civ, Origin, World, Chars, Colors):
     FinalProsperity = World[X][Y].prosperity * 150
     if World[X][Y].hasRiver:
         FinalProsperity = FinalProsperity * 1.5
-    PopCap = 3 * Civ.Race.ReproductionSpeed + FinalProsperity
+    PopCap = 3 * Source.Race.Race.ReproductionSpeed + FinalProsperity
     PopCap = round(PopCap)
 
     Civ.Sites.append(CivSite(X, Y, "Village", 0, PopCap))

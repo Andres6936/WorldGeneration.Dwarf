@@ -1,16 +1,19 @@
-import tcod as libtcod
+import cProfile
 import time
 from random import randint
-import cProfile
+
+import tcod as libtcod
 
 from Source.Biome import BiomeMap
-from Source.Civilization import SetupCivs, ProcessCivs
+from Source.Civilization import SetupCivs, ProcessCivs, Civ
 from Source.Drainage import DrainageGradMap
 from Source.Generation import MasterWorldGen
+from Source.GobernmentType import GovernmentType
 from Source.HeightGradient import HeightGradMap
 from Source.Normal import NormalMap
 from Source.Precipitation import PrecipGradMap
 from Source.Prosperity import ProsperityGradMap
+from Source.Race import Race
 from Source.Temperature import TempGradMap
 from Source.Terrain import TerrainMap
 
@@ -31,103 +34,6 @@ MIN_RIVER_LENGHT = 3
 CIV_MAX_SITES = 20
 EXPANSION_DISTANCE = 10
 WAR_DISTANCE = 8
-
-
-###################################################################################### - Classes - ######################################################################################
-
-class Tile:
-
-    def __init__(self, height, temp, precip, drainage, biome):
-        self.temp = temp
-        self.height = height
-        self.precip = precip
-        self.drainage = drainage
-        self.biome = biome
-
-    hasRiver = False
-    isCiv = False
-
-    biomeID = 0
-    prosperity = 0
-
-
-class Race:
-
-    def __init__(self, Name, PrefBiome, Strenght, Size, ReproductionSpeed, Aggressiveness, Form):
-        self.Name = Name
-        self.PrefBiome = PrefBiome
-        self.Strenght = Strenght
-        self.Size = Size
-        self.ReproductionSpeed = ReproductionSpeed
-        self.Aggressiveness = Aggressiveness
-        self.Form = Form
-
-
-class CivSite:
-
-    def __init__(self, x, y, category, suitable, popcap):
-        self.x = x
-        self.y = y
-        self.category = category
-        self.suitable = suitable
-        self.popcap = popcap
-
-    Population = 0
-
-    isCapital = False
-
-
-class Army:
-
-    def __init__(self, x, y, Civ, Size):
-        self.x = x
-        self.y = y
-        self.Civ = Civ
-        self.Size = Size
-
-
-class Civ:
-
-    def __init__(self, Race, Name, Government, Color, Flag, Aggression):
-        self.Name = Name
-        self.Race = Race
-        self.Government = Government
-        self.Color = Color
-        self.Flag = Flag
-        self.Aggression = Race.Aggressiveness + Government.Aggressiveness
-
-    def PrintInfo(self):
-        print(self.Name)
-        print(self.Race.Name)
-        print(self.Government.Name)
-        print('Aggression:', self.Aggression)
-        print('Suitable Sites:', len(self.SuitableSites), '\n')
-
-    Sites = []
-    SuitableSites = []
-
-    atWar = False
-
-    Army = Army(None, None, None, None)
-    TotalPopulation = 0
-
-
-class GovernmentType:
-
-    def __init__(self, Name, Description, Aggressiveness, Militarization, TechBonus):
-        self.Name = Name
-        self.Description = Description
-        self.Aggressiveness = Aggressiveness
-        self.Militarization = Militarization
-        self.TechBonus = TechBonus
-
-
-class War:
-
-    def __init__(self, Side1, Side2):
-        self.Side1 = Side1
-        self.Side2 = Side2
-
 
 ##################################################################################### - Functions - #####################################################################################
 
