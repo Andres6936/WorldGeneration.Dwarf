@@ -21,8 +21,8 @@ def SetupCivs(Civs, World, Chars, Colors):
 
         for i in range(WORLD_WIDTH):
             for j in range(WORLD_HEIGHT):
-                for g in range(len(Source.Race.Race.PrefBiome)):
-                    if World[i][j].biomeID == Source.Race.Race.PrefBiome[g]:
+                for g in range(len(Civs[x].Race.PrefBiome)):
+                    if World[i][j].biomeID == Civs[x].Race.PrefBiome[g]:
                         Civs[x].SuitableSites.append(CivSite(i, j, "", 1, 0))
 
         rand = randint(0, len(Civs[x].SuitableSites) - 1)
@@ -38,7 +38,7 @@ def SetupCivs(Civs, World, Chars, Colors):
         FinalProsperity = World[X][Y].prosperity * 150
         if World[X][Y].hasRiver:
             FinalProsperity = FinalProsperity * 1.5
-        PopCap = 4 * Source.Race.Race.ReproductionSpeed + FinalProsperity
+        PopCap = 4 * Civs[x].Race.ReproductionSpeed + FinalProsperity
         PopCap = PopCap * 2  # Capital Bonus
         PopCap = round(PopCap)
 
@@ -66,7 +66,7 @@ def ProcessCivs(World, Civs, Chars, Colors, Month):
     for x in range(CIVILIZED_CIVS + TRIBAL_CIVS):
 
         print(Civs[x].Name)
-        print(Source.Race.Race.Name)
+        print(Civs[x].Race.Name)
 
         Civs[x].TotalPopulation = 0
 
@@ -74,7 +74,7 @@ def ProcessCivs(World, Civs, Chars, Colors, Month):
         for y in range(len(Civs[x].Sites)):
 
             # Population
-            NewPop = int(round(Civs[x].Sites[y].Population * Source.Race.Race.ReproductionSpeed / 1500))
+            NewPop = int(round(Civs[x].Sites[y].Population * Civs[x].Race.ReproductionSpeed / 1500))
 
             if Civs[x].Sites[y].Population > Civs[x].Sites[y].popcap / 2:
                 NewPop /= 6
