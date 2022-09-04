@@ -6,12 +6,13 @@ import tcod as libtcod
 
 from Source.Biome import BiomeMap
 from Source.Civilization import SetupCivs, ProcessCivs, Civ
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS
+from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS, Wars
 from Source.Drainage import DrainageGradMap
 from Source.Generation import MasterWorldGen
 from Source.GobernmentType import GovernmentType
 from Source.HeightGradient import HeightGradMap
 from Source.Normal import NormalMap
+from Source.Palette import Palette
 from Source.Precipitation import PrecipGradMap
 from Source.Prosperity import ProsperityGradMap
 from Source.Race import Race
@@ -212,14 +213,6 @@ if __name__ == '__main__':
                               libtcod.RENDERER_SDL)  # Set True for Fullscreen
 
     # Palette
-    Palette = [libtcod.Color(255, 45, 33),  # Red
-               libtcod.Color(254, 80, 0),  # Orange
-               libtcod.Color(0, 35, 156),  # Blue
-               libtcod.Color(71, 45, 96),  # Purple
-               libtcod.Color(0, 135, 199),  # Ocean Blue
-               libtcod.Color(254, 221, 0),  # Yellow
-               libtcod.Color(255, 255, 255),  # White
-               libtcod.Color(99, 102, 106)]  # Gray
 
     # libtcod.sys_set_fps(30)
     # libtcod.console_set_fullscreen(True)
@@ -256,7 +249,6 @@ if __name__ == '__main__':
     Month = 0
 
     # Reset Wars
-    Wars = []
     del Wars[:]
 
     # Select Map Mode
