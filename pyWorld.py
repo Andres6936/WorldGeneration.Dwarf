@@ -96,7 +96,7 @@ def ReadRaces():
 
     NLines = sum(1 for line in open('Races.txt'))
 
-    NRaces = NLines / 7
+    NRaces = NLines // 7
 
     f = open(RacesFile)
 
@@ -124,7 +124,7 @@ def ReadGovern():
 
     NLines = sum(1 for line in open('CivilizedGovernment.txt'))
 
-    NGovern = NLines / 5
+    NGovern = NLines // 5
 
     f = open(GovernFile)
 
