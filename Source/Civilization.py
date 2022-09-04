@@ -4,7 +4,7 @@ import Source.Army
 import Source.Race
 from Source.Army import Army
 from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS, CIV_MAX_SITES, WAR_DISTANCE
-from Source.Generation import NewSite
+from Source.Site import NewSite, CivSite
 from Source.War import War
 from pyWorld import PointDistRound, Wars
 
@@ -126,20 +126,6 @@ def ProcessCivs(World, Civs, Chars, Colors, Month):
         print(Source.Army.Army.x, Source.Army.Army.y, Source.Army.Army.Size, '\n')
 
     return
-
-
-class CivSite:
-
-    def __init__(self, x, y, category, suitable, popcap):
-        self.x = x
-        self.y = y
-        self.category = category
-        self.suitable = suitable
-        self.popcap = popcap
-
-    Population = 0
-
-    isCapital = False
 
 
 class Civ:
