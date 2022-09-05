@@ -1,6 +1,7 @@
 import cProfile
 import time
 from random import randint
+from typing import List
 
 import tcod as libtcod
 
@@ -223,7 +224,7 @@ if __name__ == '__main__':
     needUpdate: bool = False
 
     # World Gen
-    World = [[0 for y in range(WORLD_HEIGHT)] for x in range(WORLD_WIDTH)]
+    World: List[List[int]] = [[0 for y in range(WORLD_HEIGHT)] for x in range(WORLD_WIDTH)]
     World = MasterWorldGen()
 
     # Normal Map Initialization
