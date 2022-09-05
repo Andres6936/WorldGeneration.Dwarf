@@ -13,23 +13,26 @@ from Source.Temperature import Temperature
 from Source.Tile import Tile
 
 
-def MasterWorldGen():  # ------------------------------------------------------- * MASTER GEN * -------------------------------------------------------------
-
+def MasterWorldGen():
     print(' * World Gen START * ')
-    starttime = time.time()
+    StartTime: float = time.time()
 
     # Heightmap
     hm = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
 
     for i in range(250):
-        libtcod.heightmap_add_hill(hm, randint(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
-                                   randint(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10), randint(12, 16),
+        libtcod.heightmap_add_hill(hm,
+                                   randint(WORLD_WIDTH // 10, WORLD_WIDTH - WORLD_WIDTH // 10),
+                                   randint(WORLD_HEIGHT // 10, WORLD_HEIGHT - WORLD_HEIGHT // 10),
+                                   randint(12, 16),
                                    randint(6, 10))
     print('- Main Hills -')
 
     for i in range(1000):
-        libtcod.heightmap_add_hill(hm, randint(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
-                                   randint(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10), randint(2, 4),
+        libtcod.heightmap_add_hill(hm,
+                                   randint(WORLD_WIDTH // 10, WORLD_WIDTH - WORLD_WIDTH // 10),
+                                   randint(WORLD_HEIGHT // 10, WORLD_HEIGHT - WORLD_HEIGHT // 10),
+                                   randint(2, 4),
                                    randint(6, 10))
     print('- Small Hills -')
 
@@ -80,7 +83,7 @@ def MasterWorldGen():  # -------------------------------------------------------
 
     # VOLCANISM - RARE AT SEA FOR NEW ISLANDS (?) RARE AT MOUNTAINS > 0.9 (?) RARE AT TECTONIC BORDERS (?)
 
-    elapsed_time = time.time() - starttime
+    elapsed_time = time.time() - StartTime
     print(' * World Gen DONE *    in: ', elapsed_time, ' seconds')
 
     # Initialize Tiles with Map values
