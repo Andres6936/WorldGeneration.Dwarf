@@ -1,6 +1,5 @@
 class Tile:
-
-    def __init__(self, height, temp, precip, drainage, biome):
+    def __init__(self, height: float, temp: float, precip: float, drainage: float, biome):
         self.temp = temp
         self.height = height
         self.precip = precip

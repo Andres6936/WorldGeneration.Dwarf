@@ -1,13 +1,13 @@
 from random import randint
+from typing import List
 
 import tcod as libtcod
 
 from Source.Context import WORLD_WIDTH, WORLD_HEIGHT
+from Source.Tile import Tile
 
 
-def NormalMap(
-        World):  # ------------------------------------------------------------ Normal Map (Biome + Entities) --------------------------------
-
+def NormalMap(World: List[List[Tile]]):
     Chars = [[0 for y in range(WORLD_HEIGHT)] for x in range(WORLD_WIDTH)]
     Colors = [[0 for y in range(WORLD_HEIGHT)] for x in range(WORLD_WIDTH)]
 

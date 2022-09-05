@@ -1,5 +1,6 @@
 import time
 from random import randint
+from typing import List
 
 import tcod as libtcod
 
@@ -13,7 +14,7 @@ from Source.Temperature import Temperature
 from Source.Tile import Tile
 
 
-def MasterWorldGen():
+def MasterWorldGen() -> List[List[Tile]]:
     print(' * World Gen START * ')
     StartTime: float = time.time()
 
@@ -87,7 +88,7 @@ def MasterWorldGen():
     print(' * World Gen DONE *    in: ', elapsed_time, ' seconds')
 
     # Initialize Tiles with Map values
-    World = [[0 for y in range(WORLD_HEIGHT)] for x in range(WORLD_WIDTH)]
+    World: List[List[Tile]] = [[0 for y in range(WORLD_HEIGHT)] for x in range(WORLD_WIDTH)]
     for x in range(WORLD_WIDTH):
         for y in range(WORLD_HEIGHT):
             World[x][y] = Tile(libtcod.heightmap_get_value(hm, x, y),

@@ -7,7 +7,7 @@ import tcod as libtcod
 
 from Source.Biome import BiomeMap
 from Source.Civilization import SetupCivs, ProcessCivs, Civ
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS, Wars
+from Source.Context import SCREEN_WIDTH, SCREEN_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS, Wars
 from Source.Drainage import DrainageGradMap
 from Source.Generation import MasterWorldGen
 from Source.GobernmentType import GovernmentType
@@ -19,6 +19,7 @@ from Source.Prosperity import ProsperityGradMap
 from Source.Race import Race
 from Source.Temperature import TempGradMap
 from Source.Terrain import TerrainMap
+from Source.Tile import Tile
 
 pr = cProfile.Profile()
 pr.enable()
@@ -147,9 +148,7 @@ def ReadGovern():
     return Governs
 
 
-def CivGen(Races,
-           Govern):  # -------------------------------------------------------------------- * CIV GEN * ----------------------------------------------------------------------------------
-
+def CivGen(Races, Govern):
     Civs = []
 
     for x in range(CIVILIZED_CIVS):
@@ -199,33 +198,19 @@ def CivGen(Races,
     return Civs
 
 
-##################################################################################### - PROCESS CIVS - ##################################################################################
-
-
-####################################################################################### - MAP MODES - ####################################################################################
-
-# --------------------------------------------------------------------------------- Print Map (Terrain) --------------------------------------------------------------------------------
-
-
 if __name__ == '__main__':
     # Start Console and set costum font
     libtcod.console_set_custom_font("Andux_cp866ish.png", libtcod.FONT_LAYOUT_ASCII_INROW)
     libtcod.console_init_root(SCREEN_WIDTH, SCREEN_HEIGHT, 'pyWorld', False,
                               libtcod.RENDERER_SDL)  # Set True for Fullscreen
-
-    # Palette
-
     # libtcod.sys_set_fps(30)
     # libtcod.console_set_fullscreen(True)
-
-    ################################################################################# - Main Cycle / Input - ##################################################################################
 
     isRunning: bool = False
     needUpdate: bool = False
 
     # World Gen
-    World: List[List[int]] = [[0 for y in range(WORLD_HEIGHT)] for x in range(WORLD_WIDTH)]
-    World = MasterWorldGen()
+    World: List[List[Tile]] = MasterWorldGen()
 
     # Normal Map Initialization
     Chars, Colors = NormalMap(World)
@@ -237,7 +222,6 @@ if __name__ == '__main__':
     Govern = ReadGovern()
 
     # Civ Gen
-    Civs = [0 for x in range(CIVILIZED_CIVS + TRIBAL_CIVS)]
     Civs = CivGen(Races, Govern)
 
     # Setup Civs
@@ -256,7 +240,7 @@ if __name__ == '__main__':
     while not libtcod.console_is_window_closed():
 
         # Simulation
-        while isRunning == True:
+        while isRunning:
 
             ProcessCivs(World, Civs, Chars, Colors, Month)
 
