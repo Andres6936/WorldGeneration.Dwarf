@@ -1,6 +1,6 @@
 # df-style-worldgen
 
-![alt text](/Screenshots/1.png "Screenshots")
+![alt text](/Docs/1.png "Screenshots")
 
 # What is it?
 
