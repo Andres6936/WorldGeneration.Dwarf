@@ -6,8 +6,8 @@ from typing import List
 import tcod as libtcod
 
 from Source.Biome import BiomeMap
-from Source.Civilization import SetupCivs, ProcessCivs, Civ
-from Source.Context import SCREEN_WIDTH, SCREEN_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS, Wars
+from Source.Civilization import Civ, SetupCivs
+from Source.Context import CIVILIZED_CIVS, SCREEN_HEIGHT, SCREEN_WIDTH, TRIBAL_CIVS, Wars
 from Source.Drainage import DrainageGradMap
 from Source.Generation import MasterWorldGen
 from Source.GobernmentType import GovernmentType
@@ -200,14 +200,17 @@ def CivGen(Races, Govern):
 
 if __name__ == '__main__':
     # Start Console and set costum font
+    tileSet = libtcod.tileset.load_tilesheet("Andux_cp866ish.png", 16, 18, libtcod.tileset.CHARMAP_CP437)
+    console = libtcod.Console(SCREEN_WIDTH, SCREEN_HEIGHT, order='F')
+
     libtcod.console_set_custom_font("Andux_cp866ish.png", libtcod.FONT_LAYOUT_ASCII_INROW)
     libtcod.console_init_root(SCREEN_WIDTH, SCREEN_HEIGHT, 'pyWorld', False,
                               libtcod.RENDERER_SDL)  # Set True for Fullscreen
     # libtcod.sys_set_fps(30)
     # libtcod.console_set_fullscreen(True)
 
-    isRunning: bool = False
-    needUpdate: bool = False
+    isRunning: bool = True
+    needUpdate: bool = True
 
     # World Gen
     World: List[List[Tile]] = MasterWorldGen()
@@ -237,70 +240,63 @@ if __name__ == '__main__':
     del Wars[:]
 
     # Select Map Mode
-    while not libtcod.console_is_window_closed():
-
+    with libtcod.context.new(
+            columns=console.width, rows=console.height, tileset=tileSet
+    ) as context:
         # Simulation
         while isRunning:
-
-            ProcessCivs(World, Civs, Chars, Colors, Month)
-
+            # ProcessCivs(World, Civs, Chars, Colors, Month)
             # DEBUG Print Mounth
-            Month += 1
-            print('Month: ', Month)
+            # Month += 1
+            # print('Month: ', Month)
 
-            # End Simulation
-            libtcod.console_check_for_keypress(True)
-            if libtcod.console_is_key_pressed(libtcod.KEY_SPACE):
-                timer = 0
-                isRunning = False
-                print("*PAUSED*")
-                time.sleep(1)
+            for event in libtcod.event.wait():
+                context.convert_event(event)
+                if isinstance(event, libtcod.event.Quit):
+                    isRunning = False
+                elif isinstance(event, libtcod.event.KeyDown):
+                    if event.sym == libtcod.event.KeySym.ESCAPE:
+                        isRunning = False
+                        pr.disable()
+                        pr.print_stats(sort='time')
+                    elif event == libtcod.event.KeySym.SPACE:
+                        timer = 0
+                        isRunning = False
+                        print("*PAUSED*")
+                        time.sleep(1)
+                    elif event == libtcod.event.KeySym.SPACE:
+                        isRunning = True
+                        print("*RUNNING*")
+                        time.sleep(1)
+                    elif event == libtcod.event.KeySym.t:
+                        TerrainMap(World)
+                    elif event == libtcod.event.KeySym.h:
+                        HeightGradMap(World)
+                    elif event == libtcod.event.KeySym.w:
+                        TempGradMap(World)
+                    elif event == libtcod.event.KeySym.p:
+                        PrecipGradMap(World)
+                    elif event == libtcod.event.KeySym.d:
+                        DrainageGradMap(World)
+                    elif event == libtcod.event.KeySym.f:
+                        ProsperityGradMap(World)
+                    elif event == libtcod.event.KeySym.b:
+                        BiomeMap(Chars, Colors)
+                    elif event == libtcod.event.KeySym.r:
+                        print("\n" * 100)
+                        print(" * NEW WORLD *")
+                        Month = 0
+                        Wars = []
+                        del Wars[:]
+                        World = MasterWorldGen()
+                        Races = ReadRaces()
+                        Govern = ReadGovern()
+                        Civs = CivGen(Races, Govern)
+                        Chars, Colors = NormalMap(World)
+                        SetupCivs(Civs, World, Chars, Colors)
+                        BiomeMap(Chars, Colors)
 
             # Flush Console
             if needUpdate:
                 BiomeMap(Chars, Colors)
                 needUpdate = False
-
-        key = libtcod.console_wait_for_keypress(True)
-
-        # Start Simulation
-        if libtcod.console_is_key_pressed(libtcod.KEY_SPACE):
-            isRunning = True
-            print("*RUNNING*")
-            time.sleep(1)
-
-        # Profiler
-        if libtcod.console_is_key_pressed(libtcod.KEY_ESCAPE):
-            isRunning = False
-
-            pr.disable()
-            pr.print_stats(sort='time')
-
-        if key.vk == libtcod.KEY_CHAR:
-            if key.c == ord('t'):
-                TerrainMap(World)
-            elif key.c == ord('h'):
-                HeightGradMap(World)
-            elif key.c == ord('w'):
-                TempGradMap(World)
-            elif key.c == ord('p'):
-                PrecipGradMap(World)
-            elif key.c == ord('d'):
-                DrainageGradMap(World)
-            elif key.c == ord('f'):
-                ProsperityGradMap(World)
-            elif key.c == ord('b'):
-                BiomeMap(Chars, Colors)
-            elif key.c == ord('r'):
-                print("\n" * 100)
-                print(" * NEW WORLD *")
-                Month = 0
-                Wars = []
-                del Wars[:]
-                World = MasterWorldGen()
-                Races = ReadRaces()
-                Govern = ReadGovern()
-                Civs = CivGen(Races, Govern)
-                Chars, Colors = NormalMap(World)
-                SetupCivs(Civs, World, Chars, Colors)
-                BiomeMap(Chars, Colors)
