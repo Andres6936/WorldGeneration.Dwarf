@@ -3,8 +3,8 @@ from typing import List
 
 import tcod as libtcod
 
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT
-from Source.Tile import Tile
+from Source.Context import WORLD_HEIGHT, WORLD_WIDTH
+from Source.Model.Tile import Tile
 
 
 def NormalMap(World: List[List[Tile]]):

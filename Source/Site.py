@@ -1,6 +1,6 @@
 from random import randint
 
-import Source.Race
+import Source.Model.Race
 from Source.Context import EXPANSION_DISTANCE
 from Source.Geometry import PointDistRound
 
@@ -26,7 +26,7 @@ def NewSite(Civ, Origin, World, Chars, Colors):
     FinalProsperity = World[X][Y].prosperity * 150
     if World[X][Y].hasRiver:
         FinalProsperity = FinalProsperity * 1.5
-    PopCap = 3 * Source.Race.Race.ReproductionSpeed + FinalProsperity
+    PopCap = 3 * Source.Model.Race.Race.ReproductionSpeed + FinalProsperity
     PopCap = round(PopCap)
 
     Civ.Sites.append(CivSite(X, Y, "Village", 0, PopCap))

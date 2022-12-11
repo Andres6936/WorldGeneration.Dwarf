@@ -4,14 +4,14 @@ from typing import List
 
 import tcod as libtcod
 
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT
+from Source.Context import WORLD_HEIGHT, WORLD_WIDTH
 from Source.Geometry import PoleGen
+from Source.Model.Tile import Tile
 from Source.Precipitation import Percipitaion
 from Source.Prosperity import Prosperity
 from Source.River import RiverGen
 from Source.Tectonic import TectonicGen
 from Source.Temperature import Temperature
-from Source.Tile import Tile
 
 
 def MasterWorldGen() -> List[List[Tile]]:

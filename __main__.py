@@ -10,16 +10,16 @@ from Source.Civilization import Civ, SetupCivs
 from Source.Context import CIVILIZED_CIVS, SCREEN_HEIGHT, SCREEN_WIDTH, TRIBAL_CIVS, Wars
 from Source.Drainage import DrainageGradMap
 from Source.Generation import MasterWorldGen
-from Source.GobernmentType import GovernmentType
 from Source.HeightGradient import HeightGradMap
+from Source.Model.GobernmentType import GovernmentType
+from Source.Model.Race import Race
+from Source.Model.Tile import Tile
 from Source.Normal import NormalMap
 from Source.Palette import Palette
 from Source.Precipitation import PrecipGradMap
 from Source.Prosperity import ProsperityGradMap
-from Source.Race import Race
 from Source.Temperature import TempGradMap
 from Source.Terrain import TerrainMap
-from Source.Tile import Tile
 
 pr = cProfile.Profile()
 pr.enable()
@@ -245,6 +245,10 @@ if __name__ == '__main__':
     ) as context:
         # Simulation
         while isRunning:
+            console.clear()
+            console.print(x=0, y=0, string="Hello World!")
+            context.present(console)  # Show the console.
+
             # ProcessCivs(World, Civs, Chars, Colors, Month)
             # DEBUG Print Mounth
             # Month += 1

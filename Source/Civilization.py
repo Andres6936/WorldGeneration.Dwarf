@@ -1,12 +1,12 @@
 from random import randint
 
-import Source.Army
-import Source.Race
-from Source.Army import Army
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, CIVILIZED_CIVS, TRIBAL_CIVS, CIV_MAX_SITES, WAR_DISTANCE, Wars
+import Source.Model.Army
+import Source.Model.Race
+from Source.Context import CIVILIZED_CIVS, CIV_MAX_SITES, TRIBAL_CIVS, WAR_DISTANCE, WORLD_HEIGHT, WORLD_WIDTH, Wars
 from Source.Geometry import PointDistRound
-from Source.Site import NewSite, CivSite
-from Source.War import War
+from Source.Model.Army import Army
+from Source.Model.War import War
+from Source.Site import CivSite, NewSite
 
 
 def SetupCivs(Civs, World, Chars, Colors):
@@ -107,23 +107,23 @@ def ProcessCivs(World, Civs, Chars, Colors, Month):
                             # Start War and form armies if dot have army yet
                             Wars.append(War(Civs[x], Civs[a]))
                             if Civs[a].atWar == False:  # if not already at war form new army
-                                Source.Army.Army = Army(Civs[a].Sites[0].x,
-                                                        Civs[a].Sites[0].y,
-                                                        Civs[a],
-                                                        Civs[a].TotalPopulation * Civs[
-                                                            a].Government.Militarization / 100)
+                                Source.Model.Army.Army = Army(Civs[a].Sites[0].x,
+                                                              Civs[a].Sites[0].y,
+                                                              Civs[a],
+                                                              Civs[a].TotalPopulation * Civs[
+                                                                  a].Government.Militarization / 100)
                                 Civs[a].atWar = True
                             if Civs[x].atWar == False:  # if not already at war form new army
-                                Source.Army.Army = Army(Civs[x].Sites[0].x,
-                                                        Civs[x].Sites[0].y,
-                                                        Civs[x],
-                                                        Civs[x].TotalPopulation * Civs[
-                                                            x].Government.Militarization / 100)
+                                Source.Model.Army.Army = Army(Civs[x].Sites[0].x,
+                                                              Civs[x].Sites[0].y,
+                                                              Civs[x],
+                                                              Civs[x].TotalPopulation * Civs[
+                                                                  x].Government.Militarization / 100)
                                 Civs[x].atWar = True
 
             print("X:", Civs[x].Sites[y].x, "Y:", Civs[x].Sites[y].y, "Population:", Civs[x].Sites[y].Population)
 
-        print(Source.Army.Army.x, Source.Army.Army.y, Source.Army.Army.Size, '\n')
+        print(Source.Model.Army.Army.x, Source.Model.Army.Army.y, Source.Model.Army.Army.Size, '\n')
 
     return
 
