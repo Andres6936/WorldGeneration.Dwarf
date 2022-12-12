@@ -231,7 +231,7 @@ if __name__ == '__main__':
     Civs = SetupCivs(Civs, World, Chars, Colors)
 
     # Print Map
-    BiomeMap(Chars, Colors)
+    BiomeMap(Chars, Colors, console)
 
     # Month 0
     Month = 0
@@ -245,8 +245,6 @@ if __name__ == '__main__':
     ) as context:
         # Simulation
         while isRunning:
-            console.clear()
-            console.print(x=0, y=0, string="Hello World!")
             context.present(console)  # Show the console.
 
             # ProcessCivs(World, Civs, Chars, Colors, Month)
@@ -285,7 +283,7 @@ if __name__ == '__main__':
                     elif event == libtcod.event.KeySym.f:
                         ProsperityGradMap(World)
                     elif event == libtcod.event.KeySym.b:
-                        BiomeMap(Chars, Colors)
+                        BiomeMap(Chars, Colors, console)
                     elif event == libtcod.event.KeySym.r:
                         print("\n" * 100)
                         print(" * NEW WORLD *")
@@ -298,9 +296,9 @@ if __name__ == '__main__':
                         Civs = CivGen(Races, Govern)
                         Chars, Colors = NormalMap(World)
                         SetupCivs(Civs, World, Chars, Colors)
-                        BiomeMap(Chars, Colors)
+                        BiomeMap(Chars, Colors, console)
 
             # Flush Console
             if needUpdate:
-                BiomeMap(Chars, Colors)
+                BiomeMap(Chars, Colors, console)
                 needUpdate = False
