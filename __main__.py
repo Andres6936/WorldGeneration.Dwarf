@@ -200,7 +200,7 @@ def CivGen(Races, Govern):
 
 if __name__ == '__main__':
     # Start Console and set costum font
-    tileSet = libtcod.tileset.load_tilesheet("Andux_cp866ish.png", 16, 18, libtcod.tileset.CHARMAP_CP437)
+    tileSet = libtcod.tileset.load_tilesheet("Andux_cp866ish.png", 16, 16, libtcod.tileset.CHARMAP_CP437)
     console = libtcod.Console(SCREEN_WIDTH, SCREEN_HEIGHT, order='F')
 
     libtcod.console_set_custom_font("Andux_cp866ish.png", libtcod.FONT_LAYOUT_ASCII_INROW)
