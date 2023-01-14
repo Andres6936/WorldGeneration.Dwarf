@@ -1,4 +1,3 @@
-import time
 from random import randint
 from typing import List
 
@@ -246,44 +245,35 @@ if __name__ == '__main__':
             # Month += 1
             # print('Month: ', Month)
 
-            for event in libtcod.event.wait():
+            for event in libtcod.event.get():
                 context.convert_event(event)
                 if isinstance(event, libtcod.event.Quit):
                     isRunning = False
                 elif isinstance(event, libtcod.event.KeyDown):
                     if event.sym == libtcod.event.KeySym.ESCAPE:
                         isRunning = False
-                    elif event == libtcod.event.KeySym.SPACE:
-                        timer = 0
-                        isRunning = False
-                        print("*PAUSED*")
-                        time.sleep(1)
-                    elif event == libtcod.event.KeySym.SPACE:
-                        isRunning = True
-                        print("*RUNNING*")
-                        time.sleep(1)
-                    elif event == libtcod.event.KeySym.t:
+                    elif event.sym == libtcod.event.KeySym.t:
                         print("Pressing T")
                         TerrainMap(World)
-                    elif event == libtcod.event.KeySym.h:
+                    elif event.sym == libtcod.event.KeySym.h:
                         print("Pressing H")
                         HeightGradMap(World)
-                    elif event == libtcod.event.KeySym.w:
+                    elif event.sym == libtcod.event.KeySym.w:
                         print("Pressing W")
                         TempGradMap(World)
-                    elif event == libtcod.event.KeySym.p:
+                    elif event.sym == libtcod.event.KeySym.p:
                         print("Pressing P")
                         PrecipGradMap(World)
-                    elif event == libtcod.event.KeySym.d:
+                    elif event.sym == libtcod.event.KeySym.d:
                         print("Pressing D")
                         DrainageGradMap(World)
-                    elif event == libtcod.event.KeySym.f:
+                    elif event.sym == libtcod.event.KeySym.f:
                         print("Pressing F")
                         ProsperityGradMap(World)
-                    elif event == libtcod.event.KeySym.b:
+                    elif event.sym == libtcod.event.KeySym.b:
                         print("Pressing B")
                         BiomeMap(Chars, Colors, console)
-                    elif event == libtcod.event.KeySym.r:
+                    elif event.sym == libtcod.event.KeySym.r:
                         print("Pressing R")
                         print("\n" * 100)
                         print(" * NEW WORLD *")
