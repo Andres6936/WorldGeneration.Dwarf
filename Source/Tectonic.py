@@ -1,16 +1,18 @@
 from random import randint, uniform
+from typing import Literal
 
 import tcod as libtcod
 
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT
+from Source.Context import WORLD_HEIGHT, WORLD_WIDTH
+from Source.Typing import HeightmapType
 
 
-def TectonicGen(hm, hor):
+def TectonicGen(hm: HeightmapType, hor: Literal[0, 1]):
     TecTiles = [[0 for y in range(WORLD_HEIGHT)] for x in range(WORLD_WIDTH)]
 
     # Define Tectonic Borders
     if hor == 1:
-        pos = randint(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10)
+        pos = randint(WORLD_HEIGHT // 10, WORLD_HEIGHT - WORLD_HEIGHT // 10)
         for x in range(WORLD_WIDTH):
             TecTiles[x][pos] = 1
             pos += randint(1, 5) - 3
@@ -19,7 +21,7 @@ def TectonicGen(hm, hor):
             if pos > WORLD_HEIGHT - 1:
                 pos = WORLD_HEIGHT - 1
     if hor == 0:
-        pos = randint(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10)
+        pos = randint(WORLD_WIDTH // 10, WORLD_WIDTH - WORLD_WIDTH // 10)
         for y in range(WORLD_HEIGHT):
             TecTiles[pos][y] = 1
             pos += randint(1, 5) - 3

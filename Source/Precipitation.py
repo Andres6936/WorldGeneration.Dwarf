@@ -1,6 +1,7 @@
 import tcod as libtcod
 
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_HEIGHT
+from Source.Context import SCREEN_HEIGHT, WORLD_HEIGHT, WORLD_WIDTH
+from Source.Typing import HeightmapType
 
 
 def PrecipGradMap(
@@ -9,13 +10,13 @@ def PrecipGradMap(
         for y in range(WORLD_HEIGHT):
             tempv = World[x][y].precip
             tempcolor = libtcod.color_lerp(libtcod.white, libtcod.light_blue, tempv)
-            libtcod.console_put_char_ex(0, x, y + SCREEN_HEIGHT / 2 - WORLD_HEIGHT / 2, '\333', tempcolor,
+            libtcod.console_put_char_ex(0, x, y + SCREEN_HEIGHT // 2 - WORLD_HEIGHT // 2, '\333', tempcolor,
                                         libtcod.black)
     libtcod.console_flush()
     return
 
 
-def Percipitaion(preciphm, temphm):
+def Percipitaion(preciphm: HeightmapType, temphm: HeightmapType):
     libtcod.heightmap_add(preciphm, 2)
 
     for x in range(WORLD_WIDTH):

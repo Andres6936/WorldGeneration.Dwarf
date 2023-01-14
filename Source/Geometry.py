@@ -1,8 +1,10 @@
 from random import randint
+from typing import Literal
 
 import tcod as libtcod
 
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT
+from Source.Context import WORLD_HEIGHT, WORLD_WIDTH
+from Source.Typing import HeightmapType
 
 
 def PointDistRound(pt1x, pt1y, pt2x, pt2y):
@@ -68,7 +70,7 @@ def LowestNeighbour(X, Y, World):  # Diagonals are commented for rivers
     return (x, y, error)
 
 
-def PoleGen(hm, NS):
+def PoleGen(hm: HeightmapType, NS: Literal[0, 1]):
     if NS == 0:
         rng = randint(2, 5)
         for i in range(WORLD_WIDTH):

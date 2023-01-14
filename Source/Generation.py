@@ -12,6 +12,7 @@ from Source.Prosperity import Prosperity
 from Source.River import RiverGen
 from Source.Tectonic import TectonicGen
 from Source.Temperature import Temperature
+from Source.Typing import HeightmapType
 
 
 def MasterWorldGen() -> List[List[Tile]]:
@@ -19,7 +20,7 @@ def MasterWorldGen() -> List[List[Tile]]:
     StartTime: float = time.time()
 
     # Heightmap
-    hm = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
+    hm: HeightmapType = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
 
     for i in range(250):
         libtcod.heightmap_add_hill(hm,
@@ -39,7 +40,7 @@ def MasterWorldGen() -> List[List[Tile]]:
 
     libtcod.heightmap_normalize(hm, 0.0, 1.0)
 
-    noisehm = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
+    noisehm: HeightmapType = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
     noise2d = libtcod.noise_new(2, libtcod.NOISE_DEFAULT_HURST, libtcod.NOISE_DEFAULT_LACUNARITY)
     libtcod.heightmap_add_fbm(noisehm, noise2d, 6, 6, 0, 0, 32, 1, 1)
     libtcod.heightmap_normalize(noisehm, 0.0, 1.0)
@@ -56,20 +57,20 @@ def MasterWorldGen() -> List[List[Tile]]:
     TectonicGen(hm, 1)
     print('- Tectonic Gen -')
 
-    libtcod.heightmap_rain_erosion(hm, WORLD_WIDTH * WORLD_HEIGHT, 0.07, 0, 0)
+    libtcod.heightmap_rain_erosion(hm, WORLD_WIDTH * WORLD_HEIGHT, 0.07, 0, None)
     print('- Erosion -')
 
     libtcod.heightmap_clamp(hm, 0.0, 1.0)
 
     # Temperature
-    temp = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
+    temp: HeightmapType = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
     Temperature(temp, hm)
     libtcod.heightmap_normalize(temp, 0.0, 1.0)
     print('- Temperature Calculation -')
 
     # Precipitation
 
-    preciphm = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
+    preciphm: HeightmapType = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
     Percipitaion(preciphm, temp)
     libtcod.heightmap_normalize(preciphm, 0.0, 1.0)
     print('- Percipitaion Calculation -')
