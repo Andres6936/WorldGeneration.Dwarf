@@ -59,7 +59,6 @@ def RiverGen(World: List[List[Tile]]):
             break
         World[XCoor[x]][YCoor[x]].hasRiver = True
         if World[XCoor[x]][YCoor[x]].height >= 0.2 and x == len(XCoor):
-            World[XCoor[x]][YCoor[
-                x]].hasRiver = True  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Change to Lake later
+            World[XCoor[x]][YCoor[x]].hasRiver = True  # Change to Lake later
 
     return

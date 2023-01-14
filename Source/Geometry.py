@@ -1,9 +1,10 @@
 from random import randint
-from typing import Literal
+from typing import List, Literal
 
 import tcod as libtcod
 
 from Source.Context import WORLD_HEIGHT, WORLD_WIDTH
+from Source.Model.Tile import Tile
 from Source.Typing import HeightmapType
 
 
@@ -15,7 +16,7 @@ def PointDistRound(pt1x, pt1y, pt2x, pt2y):
     return distance
 
 
-def LowestNeighbour(X, Y, World):  # Diagonals are commented for rivers
+def LowestNeighbour(X: int, Y: int, World: List[List[Tile]]):  # Diagonals are commented for rivers
 
     minval = 1
 
@@ -67,7 +68,7 @@ def LowestNeighbour(X, Y, World):  # Diagonals are commented for rivers
     if x == 0 and y == 0:
         error = 1
 
-    return (x, y, error)
+    return x, y, error
 
 
 def PoleGen(hm: HeightmapType, NS: Literal[0, 1]):
