@@ -1,6 +1,9 @@
+from typing import List
+
 import tcod as libtcod
 
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_HEIGHT
+from Source.Context import SCREEN_HEIGHT, WORLD_HEIGHT, WORLD_WIDTH
+from Source.Model.Tile import Tile
 
 
 def ProsperityGradMap(
@@ -15,7 +18,7 @@ def ProsperityGradMap(
     return
 
 
-def Prosperity(World):
+def Prosperity(World: List[List[Tile]]):
     for x in range(WORLD_WIDTH):
         for y in range(WORLD_HEIGHT):
             World[x][y].prosperity = (1.0 - abs(World[x][y].precip - 0.6) + 1.0 - abs(World[x][y].temp - 0.5) +

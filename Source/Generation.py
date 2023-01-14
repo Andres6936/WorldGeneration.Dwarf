@@ -77,7 +77,7 @@ def MasterWorldGen() -> List[List[Tile]]:
 
     # Drainage
 
-    drainhm = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
+    drainhm: HeightmapType = libtcod.heightmap_new(WORLD_WIDTH, WORLD_HEIGHT)
     drain = libtcod.noise_new(2, libtcod.NOISE_DEFAULT_HURST, libtcod.NOISE_DEFAULT_LACUNARITY)
     libtcod.heightmap_add_fbm(drainhm, drain, 2, 2, 0, 0, 32, 1, 1)
     libtcod.heightmap_normalize(drainhm, 0.0, 1.0)
