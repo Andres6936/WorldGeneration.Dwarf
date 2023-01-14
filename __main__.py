@@ -209,9 +209,6 @@ if __name__ == '__main__':
     # libtcod.sys_set_fps(30)
     # libtcod.console_set_fullscreen(True)
 
-    isRunning: bool = True
-    needUpdate: bool = True
-
     # World Gen
     World: List[List[Tile]] = MasterWorldGen()
 
@@ -238,6 +235,9 @@ if __name__ == '__main__':
 
     # Reset Wars
     del Wars[:]
+
+    isRunning: bool = True
+    needUpdate: bool = True
 
     # Select Map Mode
     with libtcod.context.new(
@@ -271,20 +271,28 @@ if __name__ == '__main__':
                         print("*RUNNING*")
                         time.sleep(1)
                     elif event == libtcod.event.KeySym.t:
+                        print("Pressing T")
                         TerrainMap(World)
                     elif event == libtcod.event.KeySym.h:
+                        print("Pressing H")
                         HeightGradMap(World)
                     elif event == libtcod.event.KeySym.w:
+                        print("Pressing W")
                         TempGradMap(World)
                     elif event == libtcod.event.KeySym.p:
+                        print("Pressing P")
                         PrecipGradMap(World)
                     elif event == libtcod.event.KeySym.d:
+                        print("Pressing D")
                         DrainageGradMap(World)
                     elif event == libtcod.event.KeySym.f:
+                        print("Pressing F")
                         ProsperityGradMap(World)
                     elif event == libtcod.event.KeySym.b:
+                        print("Pressing B")
                         BiomeMap(Chars, Colors, console)
                     elif event == libtcod.event.KeySym.r:
+                        print("Pressing R")
                         print("\n" * 100)
                         print(" * NEW WORLD *")
                         Month = 0
@@ -300,5 +308,6 @@ if __name__ == '__main__':
 
             # Flush Console
             if needUpdate:
+                print("Reloading Console")
                 BiomeMap(Chars, Colors, console)
                 needUpdate = False
