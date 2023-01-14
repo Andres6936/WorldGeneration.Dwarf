@@ -1,4 +1,3 @@
-import cProfile
 import time
 from random import randint
 from typing import List
@@ -21,11 +20,6 @@ from Source.Prosperity import ProsperityGradMap
 from Source.Temperature import TempGradMap
 from Source.Terrain import TerrainMap
 
-pr = cProfile.Profile()
-pr.enable()
-
-
-##################################################################################### - Functions - #####################################################################################
 
 # - General Functions -
 
@@ -259,8 +253,6 @@ if __name__ == '__main__':
                 elif isinstance(event, libtcod.event.KeyDown):
                     if event.sym == libtcod.event.KeySym.ESCAPE:
                         isRunning = False
-                        pr.disable()
-                        pr.print_stats(sort='time')
                     elif event == libtcod.event.KeySym.SPACE:
                         timer = 0
                         isRunning = False
