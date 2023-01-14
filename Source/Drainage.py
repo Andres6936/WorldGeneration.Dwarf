@@ -1,6 +1,6 @@
 import tcod as libtcod
 
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, SCREEN_HEIGHT
+from Source.Context import SCREEN_HEIGHT, WORLD_HEIGHT, WORLD_WIDTH
 
 
 def DrainageGradMap(
@@ -9,7 +9,7 @@ def DrainageGradMap(
         for y in range(WORLD_HEIGHT):
             drainv = World[x][y].drainage
             draincolor = libtcod.color_lerp(libtcod.darkest_orange, libtcod.white, drainv)
-            libtcod.console_put_char_ex(0, x, y + SCREEN_HEIGHT / 2 - WORLD_HEIGHT / 2, '\333', draincolor,
+            libtcod.console_put_char_ex(0, x, y + SCREEN_HEIGHT // 2 - WORLD_HEIGHT // 2, '\333', draincolor,
                                         libtcod.black)
     libtcod.console_flush()
     return

@@ -12,7 +12,7 @@ def ProsperityGradMap(
         for y in range(WORLD_HEIGHT):
             prosperitynv = World[x][y].prosperity
             prosperitycolor = libtcod.color_lerp(libtcod.white, libtcod.darker_green, prosperitynv)
-            libtcod.console_put_char_ex(0, x, y + SCREEN_HEIGHT / 2 - WORLD_HEIGHT / 2, '\333', prosperitycolor,
+            libtcod.console_put_char_ex(0, x, y + SCREEN_HEIGHT // 2 - WORLD_HEIGHT // 2, '\333', prosperitycolor,
                                         libtcod.black)
     libtcod.console_flush()
     return
