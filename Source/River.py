@@ -1,10 +1,12 @@
 from random import randint
+from typing import List
 
-from Source.Context import WORLD_WIDTH, WORLD_HEIGHT, MIN_RIVER_LENGHT
+from Source.Context import MIN_RIVER_LENGHT, WORLD_HEIGHT, WORLD_WIDTH
 from Source.Geometry import LowestNeighbour
+from Source.Model.Tile import Tile
 
 
-def RiverGen(World):
+def RiverGen(World: List[List[Tile]]):
     X = randint(0, WORLD_WIDTH - 1)
     Y = randint(0, WORLD_HEIGHT - 1)
 

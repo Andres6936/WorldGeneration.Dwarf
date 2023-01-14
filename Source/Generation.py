@@ -92,11 +92,7 @@ def MasterWorldGen() -> List[List[Tile]]:
     World: List[List[Tile]] = [[0 for y in range(WORLD_HEIGHT)] for x in range(WORLD_WIDTH)]
     for x in range(WORLD_WIDTH):
         for y in range(WORLD_HEIGHT):
-            World[x][y] = Tile(libtcod.heightmap_get_value(hm, x, y),
-                               libtcod.heightmap_get_value(temp, x, y),
-                               libtcod.heightmap_get_value(preciphm, x, y),
-                               libtcod.heightmap_get_value(drainhm, x, y),
-                               0)
+            World[x][y] = Tile(hm[y, x], temp[y, x], preciphm[y, x], drainhm[y, x], 0)
 
     print('- Tiles Initialized -')
 
@@ -160,18 +156,9 @@ def MasterWorldGen() -> List[List[Tile]]:
     print('- BiomeIDs Atributed -')
 
     # River Gen
-
     for x in range(1):
         RiverGen(World)
+
     print('- River Gen -')
-
-    # Free Heightmaps
-    libtcod.heightmap_delete(hm)
-    libtcod.heightmap_delete(temp)
-    libtcod.heightmap_delete(noisehm)
-
     print(' * Biomes/Rivers Sorted *')
-
     return World
-
-
