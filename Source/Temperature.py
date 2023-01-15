@@ -1,17 +1,19 @@
 import tcod as libtcod
+from tcod import Console
 
 from Source.Context import SCREEN_HEIGHT, WORLD_HEIGHT, WORLD_WIDTH
 from Source.Typing import HeightmapType
 
 
-def TempGradMap(
-        World):  # ------------------------------------------------------------ Print Map (Surface Temperature Gradient) white -> cold red -> warm --------------------------------
+def TempGradMap(World, console: Console):
+    """
+    Print Map (Surface Temperature Gradient) white -> cold red -> warm
+    """
     for x in range(WORLD_WIDTH):
         for y in range(WORLD_HEIGHT):
             tempv = World[x][y].temp
             tempcolor = libtcod.color_lerp(libtcod.white, libtcod.red, tempv)
-            libtcod.console_put_char_ex(0, x, y + SCREEN_HEIGHT // 2 - WORLD_HEIGHT // 2, '\333', tempcolor,
-                                        libtcod.black)
+            console.rgb[x, y + SCREEN_HEIGHT // 2 - WORLD_HEIGHT // 2] = ord('█'), tempcolor, libtcod.black
     libtcod.console_flush()
     return
 

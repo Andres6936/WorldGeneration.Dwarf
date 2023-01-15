@@ -260,10 +260,10 @@ if __name__ == '__main__':
                         HeightGradMap(World, console)
                     elif event.sym == libtcod.event.KeySym.w:
                         print("Pressing W")
-                        TempGradMap(World)
+                        TempGradMap(World, console)
                     elif event.sym == libtcod.event.KeySym.p:
                         print("Pressing P")
-                        PrecipGradMap(World)
+                        PrecipGradMap(World, console)
                     elif event.sym == libtcod.event.KeySym.d:
                         print("Pressing D")
                         DrainageGradMap(World)
