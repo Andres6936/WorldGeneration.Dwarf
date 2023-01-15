@@ -266,10 +266,10 @@ if __name__ == '__main__':
                         PrecipGradMap(World, console)
                     elif event.sym == libtcod.event.KeySym.d:
                         print("Pressing D")
-                        DrainageGradMap(World)
+                        DrainageGradMap(World, console)
                     elif event.sym == libtcod.event.KeySym.f:
                         print("Pressing F")
-                        ProsperityGradMap(World)
+                        ProsperityGradMap(World, console)
                     elif event.sym == libtcod.event.KeySym.b:
                         print("Pressing B")
                         BiomeMap(Chars, Colors, console)
