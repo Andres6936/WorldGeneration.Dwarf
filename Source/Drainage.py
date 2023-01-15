@@ -13,5 +13,4 @@ def DrainageGradMap(World, console: Console):
             drainv = World[x][y].drainage
             draincolor = libtcod.color_lerp(libtcod.darkest_orange, libtcod.white, drainv)
             console.rgb[x, y + SCREEN_HEIGHT // 2 - WORLD_HEIGHT // 2] = ord('█'), draincolor, libtcod.black
-    libtcod.console_flush()
     return

@@ -14,7 +14,6 @@ def PrecipGradMap(World, console: Console):
             tempv = World[x][y].precip
             tempcolor = libtcod.color_lerp(libtcod.white, libtcod.light_blue, tempv)
             console.rgb[x, y + SCREEN_HEIGHT // 2 - WORLD_HEIGHT // 2] = ord('█'), tempcolor, libtcod.black
-    libtcod.console_flush()
     return
 
 

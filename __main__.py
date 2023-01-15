@@ -196,12 +196,6 @@ if __name__ == '__main__':
     tileSet = libtcod.tileset.load_tilesheet("Andux_cp866ish.png", 16, 16, libtcod.tileset.CHARMAP_CP437)
     console = libtcod.Console(SCREEN_WIDTH, SCREEN_HEIGHT, order='F')
 
-    libtcod.console_set_custom_font("Andux_cp866ish.png", libtcod.FONT_LAYOUT_ASCII_INROW)
-    libtcod.console_init_root(SCREEN_WIDTH, SCREEN_HEIGHT, 'pyWorld', False,
-                              libtcod.RENDERER_SDL)  # Set True for Fullscreen
-    # libtcod.sys_set_fps(30)
-    # libtcod.console_set_fullscreen(True)
-
     # World Gen
     World: List[List[Tile]] = MasterWorldGen()
 

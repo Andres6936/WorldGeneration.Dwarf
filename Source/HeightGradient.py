@@ -12,6 +12,4 @@ def HeightGradMap(World, console: Console):
             # Set lightness to hm_v so higher heightmap value -> "whiter"
             libtcod.color_set_hsv(HeightColor, 0, 0, hm_v)
             console.rgb[x, y + SCREEN_HEIGHT // 2 - WORLD_HEIGHT // 2] = ord('█'), HeightColor, libtcod.black
-
-    libtcod.console_flush()
     return

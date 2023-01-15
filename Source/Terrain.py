@@ -31,5 +31,4 @@ def TerrainMap(World, console: Console):
             if hm_v > 0.99:
                 console.rgb[x, y + SCREEN_HEIGHT // 2 - WORLD_HEIGHT // 2] = ord(
                     '^'), libtcod.darker_gray, libtcod.black
-    libtcod.console_flush()
     return

@@ -14,7 +14,6 @@ def TempGradMap(World, console: Console):
             tempv = World[x][y].temp
             tempcolor = libtcod.color_lerp(libtcod.white, libtcod.red, tempv)
             console.rgb[x, y + SCREEN_HEIGHT // 2 - WORLD_HEIGHT // 2] = ord('█'), tempcolor, libtcod.black
-    libtcod.console_flush()
     return
 
 
