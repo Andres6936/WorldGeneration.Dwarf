@@ -257,7 +257,7 @@ if __name__ == '__main__':
                         TerrainMap(World, console)
                     elif event.sym == libtcod.event.KeySym.h:
                         print("Pressing H")
-                        HeightGradMap(World)
+                        HeightGradMap(World, console)
                     elif event.sym == libtcod.event.KeySym.w:
                         print("Pressing W")
                         TempGradMap(World)
