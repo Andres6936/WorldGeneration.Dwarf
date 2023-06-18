@@ -17,6 +17,7 @@ from Source.Palette import Palette
 from Source.Precipitation import PrecipGradMap
 from Source.Prosperity import ProsperityGradMap
 from Source.Scene.IScene import IScene
+from Source.Scene.TypeScene import TypeScene
 from Source.Temperature import TempGradMap
 from Source.Terrain import TerrainMap
 
@@ -255,6 +256,7 @@ class SceneMain(IScene):
                     Chars, Colors = NormalMap(World)
                     SetupCivs(Civs, World, Chars, Colors)
                     BiomeMap(Chars, Colors, self.console)
+        return TypeScene.NONE
 
     def draw(self):
         self.context.present(self.console)  # Show the console.
