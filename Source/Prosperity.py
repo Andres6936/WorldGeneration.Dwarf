@@ -1,7 +1,7 @@
 from typing import List
 
-import tcod as libtcod
-from tcod import Console
+from tcod import libtcodpy as libtcod
+from tcod.console import Console
 
 from Source.Context import SCREEN_HEIGHT, WORLD_HEIGHT, WORLD_WIDTH
 from Source.Model.Tile import Tile

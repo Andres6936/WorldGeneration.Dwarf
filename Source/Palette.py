@@ -1,4 +1,4 @@
-import tcod as libtcod
+from tcod import libtcodpy as libtcod
 
 Palette = [libtcod.Color(255, 45, 33),  # Red
            libtcod.Color(254, 80, 0),  # Orange

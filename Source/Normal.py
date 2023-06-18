@@ -1,7 +1,7 @@
 from random import randint
 from typing import List
 
-import tcod as libtcod
+from tcod import libtcodpy as libtcod
 
 from Source.Context import WORLD_HEIGHT, WORLD_WIDTH
 from Source.Model.Tile import Tile

@@ -1,7 +1,7 @@
 from random import randint, uniform
 from typing import Literal
 
-import tcod as libtcod
+from tcod import libtcodpy as libtcod
 
 from Source.Context import WORLD_HEIGHT, WORLD_WIDTH
 from Source.Typing import HeightmapType

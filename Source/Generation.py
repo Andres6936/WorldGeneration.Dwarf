@@ -2,7 +2,7 @@ import time
 from random import randint
 from typing import List
 
-import tcod as libtcod
+from tcod import libtcodpy as libtcod
 
 from Source.Context import WORLD_HEIGHT, WORLD_WIDTH
 from Source.Geometry import PoleGen

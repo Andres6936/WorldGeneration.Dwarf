@@ -1,5 +1,5 @@
 import tcod as libtcod
-from tcod import Console
+from tcod.console import Console
 
 from Source.Context import SCREEN_HEIGHT, WORLD_HEIGHT, WORLD_WIDTH
 
