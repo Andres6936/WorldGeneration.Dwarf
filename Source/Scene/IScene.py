@@ -1,9 +1,11 @@
 from abc import ABC, abstractmethod
 
+from Source.Scene.TypeScene import TypeScene
+
 
 class IScene(ABC):
     @abstractmethod
-    def events(self):
+    def events(self) -> TypeScene:
         pass
 
     @abstractmethod

@@ -1,5 +1,6 @@
 from Source.Scene.IScene import IScene
 from Source.Scene.SceneMain import SceneMain
+from Source.Scene.TypeScene import TypeScene
 
 
 class SceneManager:
@@ -13,7 +14,11 @@ class SceneManager:
         return self.running
 
     def events(self):
-        self.currentScene.events()
+        typeScene: TypeScene = self.currentScene.events()
+        if typeScene == TypeScene.NONE:
+            pass
+        elif typeScene == TypeScene.QUIT:
+            self.running = False
 
     def clear(self):
         self.currentScene.clear()

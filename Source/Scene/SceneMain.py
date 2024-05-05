@@ -217,10 +217,10 @@ class SceneMain(IScene):
         for event in libtcod.event.get():
             self.context.convert_event(event)
             if isinstance(event, libtcod.event.Quit):
-                isRunning = False
+                return TypeScene.QUIT
             elif isinstance(event, libtcod.event.KeyDown):
                 if event.sym == libtcod.event.KeySym.ESCAPE:
-                    isRunning = False
+                    return TypeScene.QUIT
                 elif event.sym == libtcod.event.KeySym.t:
                     print("Pressing T")
                     TerrainMap(self.World, self.console)
