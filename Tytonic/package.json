@@ -4,7 +4,11 @@
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest",
-    "assemblyscript": "^0.27.27"
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "assemblyscript": "^0.27.27",
+    "vite": "^5.2.11"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -16,10 +20,15 @@
     }
   },
   "scripts": {
+    "dev": "vite dev",
     "asbuild:debug": "asc assembly/index.ts --target debug",
     "asbuild:release": "asc assembly/index.ts --target release",
     "asbuild": "npm run asbuild:debug && npm run asbuild:release",
     "test": "bun run tests/index.ts",
     "start": "npx serve ."
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
