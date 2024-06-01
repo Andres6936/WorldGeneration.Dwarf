@@ -42,7 +42,7 @@ function App() {
     const [ref, {width, height}] = useMeasure();
 
     return (
-        <main style={{height: "100%"}} ref={ref}>
+        <main style={{position: "relative", height: "100%"}} ref={ref}>
             <Heightmap valueOf={heightmapOf} width={width!} height={height!}/>
         </main>
     )
