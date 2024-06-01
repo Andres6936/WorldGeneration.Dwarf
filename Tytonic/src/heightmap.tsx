@@ -3,7 +3,7 @@ import {useMemo} from "react";
 import * as d3 from "d3"
 
 
-const MARGIN = {top: 20, right: 50, bottom: 20, left: 50};
+const MARGIN = {top: 50, right: 50, bottom: 0, left: 50};
 
 export type HeatmapProps = {
     width: number;
@@ -42,7 +42,7 @@ export default function Heightmap({
     const yScale = useMemo(() => {
         return d3
             .scaleBand()
-            .range([boundsHeight, 0])
+            .range([0, boundsHeight])
             .domain(allYGroups)
             .padding(0.01);
     }, [valueOf, height]);
@@ -86,7 +86,7 @@ export default function Heightmap({
             <text
                 key={indexOf}
                 x={x + xScale.bandwidth() / 2}
-                y={boundsHeight + 10}
+                y={-5}
                 textAnchor="middle"
                 dominantBaseline="middle"
                 fontSize={10}
