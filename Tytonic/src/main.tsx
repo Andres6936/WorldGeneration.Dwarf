@@ -25,6 +25,8 @@ function getRandomInt(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+console.log('* World Gen START *')
+
 const heightmap = newHeightmap(WORLD_WIDTH, WORLD_HEIGHT);
 
 for (let i = 0; i < 250; i++) {
@@ -32,6 +34,17 @@ for (let i = 0; i < 250; i++) {
         getRandomInt(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
         getRandomInt(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10),
         getRandomInt(12, 16),
+        getRandomInt(6, 10)
+    );
+}
+
+console.log('- Main Hills -')
+
+for (let i = 0; i < 1000; i++) {
+     addHillToHeightmap(heightmap,
+        getRandomInt(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
+        getRandomInt(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10),
+        getRandomInt(2, 4),
         getRandomInt(6, 10)
     );
 }
