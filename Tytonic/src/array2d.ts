@@ -67,13 +67,16 @@ export class ReadonlyArray2D {
         }
     }
 
-    public map(callback: (x: ValueIterable, indexOf?: number) => void) {
+    public map<T>(callback: (x: ValueIterable, indexOf?: number) => T): T[] {
+        const totalOfResult: T[] = []
         for (let i = 0; i < this.valueOf.length; i++) {
-            callback({
+            const resultOf = callback({
                 valueOf: this.valueOf[i],
                 x: i % this.width,
                 y: Math.trunc(i / this.width),
             }, i)
+            totalOfResult.push(resultOf);
         }
+        return totalOfResult;
     }
 }
