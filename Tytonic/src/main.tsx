@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import Heightmap, {type InteractionData} from './heightmap.tsx'
 import './index.css'
 import {useMeasure} from "@uidotdev/usehooks";
-import {addHillToHeightmap, getValuesOfHeightmap, newHeightmap} from "tytonic";
+import {addHillToHeightmap, getValuesOfHeightmap, newHeightmap, normalizeHeightmap} from "tytonic";
 import {ReadonlyArray2D} from "./array2d.ts";
 import {Tooltip} from "./tooltip.tsx";
 
@@ -48,6 +48,10 @@ for (let i = 0; i < 1000; i++) {
         getRandomInt(6, 10)
     );
 }
+
+console.log('- Small Hills -')
+
+normalizeHeightmap(heightmap, 0.0, 1.0)
 
 const valuesOf = getValuesOfHeightmap(heightmap);
 const heightmapOf = new ReadonlyArray2D(valuesOf, WORLD_WIDTH, WORLD_HEIGHT);
