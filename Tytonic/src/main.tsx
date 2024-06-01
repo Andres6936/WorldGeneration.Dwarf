@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom/client'
-import Heightmap from './heightmap.tsx'
+import Heightmap, {type InteractionData} from './heightmap.tsx'
 import './index.css'
 import {useMeasure} from "@uidotdev/usehooks";
 import {addHillToHeightmap, getValuesOfHeightmap, newHeightmap} from "tytonic";
 import {ReadonlyArray2D} from "./array2d.ts";
+import {Tooltip} from "./tooltip.tsx";
 
 const WORLD_WIDTH = 80;
 const WORLD_HEIGHT = 50;
@@ -39,11 +40,13 @@ const valuesOf = getValuesOfHeightmap(heightmap);
 const heightmapOf = new ReadonlyArray2D(valuesOf, WORLD_WIDTH, WORLD_HEIGHT);
 
 function App() {
+    const [hoveredCell, setHoveredCell] = useState<InteractionData | null>(null);
     const [ref, {width, height}] = useMeasure();
 
     return (
         <main style={{position: "relative", height: "100%"}} ref={ref}>
-            <Heightmap valueOf={heightmapOf} width={width!} height={height!}/>
+            <Heightmap valueOf={heightmapOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
+            <Tooltip interactionData={hoveredCell} width={width!} height={height!}/>
         </main>
     )
 }

@@ -5,16 +5,26 @@ import * as d3 from "d3"
 
 const MARGIN = {top: 30, right: 30, bottom: 30, left: 30};
 
+export type InteractionData = {
+    xLabel: string;
+    yLabel: string;
+    xPos: number;
+    yPos: number;
+    value: number;
+};
+
 export type HeatmapProps = {
     width: number;
     height: number;
     valueOf: ReadonlyArray2D;
+    setHoveredCell: (hoveredCell: InteractionData | null) => void;
 };
 
 export default function Heightmap({
                                       width,
                                       height,
                                       valueOf,
+                                      setHoveredCell,
                                   }: HeatmapProps) {
 
     // The bounds (=area inside the axis) is calculated by substracting the margins
@@ -69,6 +79,16 @@ export default function Heightmap({
                 width={xScale.bandwidth()}
                 height={yScale.bandwidth()}
                 opacity={1}
+                onMouseEnter={(e) => {
+                    setHoveredCell({
+                        xLabel: "group " + item.x,
+                        yLabel: "group " + item.y,
+                        xPos: x + xScale.bandwidth() + MARGIN.left,
+                        yPos: y + xScale.bandwidth() / 2 + MARGIN.top,
+                        value: Math.round(item.valueOf * 100) / 100,
+                    });
+                }}
+                onMouseLeave={() => setHoveredCell(null)}
                 fill={colorScale(item.valueOf)}
                 stroke="white"
             />
