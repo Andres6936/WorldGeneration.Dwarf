@@ -4,6 +4,7 @@
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/d3": "^7.4.3",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.6.0",
@@ -28,11 +29,7 @@
     "start": "npx serve ."
   },
   "dependencies": {
-    "@visx/group": "^3.3.0",
-    "@visx/heatmap": "^3.3.0",
-    "@visx/mock-data": "^3.3.0",
-    "@visx/responsive": "^3.10.2",
-    "@visx/scale": "^3.5.0",
+    "d3": "^7.9.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }
