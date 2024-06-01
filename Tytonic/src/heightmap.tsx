@@ -11,7 +11,7 @@ export type HeatmapProps = {
     valueOf: ReadonlyArray2D;
 };
 
-export default function App({
+export default function Heightmap({
                                 width,
                                 height,
                                 valueOf,

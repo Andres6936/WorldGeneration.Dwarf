@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './app.tsx'
+import Heightmap from './heightmap.tsx'
 import './index.css'
 import {getValuesOfHeightmap, addHillToHeightmap, newHeightmap} from "tytonic";
 import {ReadonlyArray2D} from "./array2d.ts";
@@ -40,6 +40,6 @@ const heightmapOf = new ReadonlyArray2D(valuesOf, WORLD_WIDTH, WORLD_HEIGHT);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-       <App valueOf={heightmapOf} width={1400} height={1000}/>
+       <Heightmap valueOf={heightmapOf} width={1400} height={1000}/>
     </React.StrictMode>,
 )
