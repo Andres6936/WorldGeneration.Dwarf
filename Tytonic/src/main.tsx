@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Heightmap from './heightmap.tsx'
 import './index.css'
-import {getValuesOfHeightmap, addHillToHeightmap, newHeightmap} from "tytonic";
+import {useMeasure} from "@uidotdev/usehooks";
+import {addHillToHeightmap, getValuesOfHeightmap, newHeightmap} from "tytonic";
 import {ReadonlyArray2D} from "./array2d.ts";
 
 const WORLD_WIDTH = 80;
@@ -37,9 +38,18 @@ for (let i = 0; i < 250; i++) {
 const valuesOf = getValuesOfHeightmap(heightmap);
 const heightmapOf = new ReadonlyArray2D(valuesOf, WORLD_WIDTH, WORLD_HEIGHT);
 
+function App() {
+    const [ref, {width, height}] = useMeasure();
+
+    return (
+        <main style={{height: "100%"}} ref={ref}>
+            <Heightmap valueOf={heightmapOf} width={width!} height={height!}/>
+        </main>
+    )
+}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-       <Heightmap valueOf={heightmapOf} width={1400} height={1000}/>
+        <App/>
     </React.StrictMode>,
 )
