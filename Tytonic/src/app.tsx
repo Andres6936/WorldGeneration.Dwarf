@@ -3,7 +3,7 @@ import {useMemo} from "react";
 import * as d3 from "d3"
 
 
-const MARGIN = {top: 10, right: 50, bottom: 30, left: 50};
+const MARGIN = {top: 20, right: 50, bottom: 20, left: 50};
 
 export type HeatmapProps = {
     width: number;
