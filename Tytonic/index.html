@@ -5,40 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Dwarf</title>
     <script type="module">
-        import {newHeightmap, addHillToHeightmap, getValuesOfHeightmap} from "/build/release.js";
-
-        const WORLD_WIDTH = 80;
-        const WORLD_HEIGHT = 50
-
-        /**
-         * Returns a random integer between min (inclusive) and max (inclusive).
-         * The value is no lower than min (or the next integer greater than min
-         * if min isn't an integer) and no greater than max (or the next integer
-         * lower than max if max isn't an integer).
-         * Using Math.round() will give you a non-uniform distribution!
-         *
-         * Ref: https://stackoverflow.com/a/1527820
-         */
-        function getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
-        const heightmap = newHeightmap(WORLD_WIDTH, WORLD_HEIGHT);
-
-        for (let i = 0; i < 250; i++) {
-            addHillToHeightmap(heightmap,
-                getRandomInt(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
-                getRandomInt(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10),
-                getRandomInt(12, 16),
-                getRandomInt(6, 10)
-            );
-        }
-
-        const valuesOf = getValuesOfHeightmap(heightmap);
-
-        console.log(valuesOf)
+        // import {newHeightmap, addHillToHeightmap, getValuesOfHeightmap} from "/build/release.js";
+        //
+        // const WORLD_WIDTH = 80;
+        // const WORLD_HEIGHT = 50
+        //
+        // /**
+        //  * Returns a random integer between min (inclusive) and max (inclusive).
+        //  * The value is no lower than min (or the next integer greater than min
+        //  * if min isn't an integer) and no greater than max (or the next integer
+        //  * lower than max if max isn't an integer).
+        //  * Using Math.round() will give you a non-uniform distribution!
+        //  *
+        //  * Ref: https://stackoverflow.com/a/1527820
+        //  */
+        // function getRandomInt(min, max) {
+        //     min = Math.ceil(min);
+        //     max = Math.floor(max);
+        //     return Math.floor(Math.random() * (max - min + 1)) + min;
+        // }
+        //
+        // const heightmap = newHeightmap(WORLD_WIDTH, WORLD_HEIGHT);
+        //
+        // for (let i = 0; i < 250; i++) {
+        //     addHillToHeightmap(heightmap,
+        //         getRandomInt(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
+        //         getRandomInt(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10),
+        //         getRandomInt(12, 16),
+        //         getRandomInt(6, 10)
+        //     );
+        // }
+        //
+        // const valuesOf = getValuesOfHeightmap(heightmap);
+        //
+        // console.log(valuesOf)
     </script>
 </head>
 <body>
