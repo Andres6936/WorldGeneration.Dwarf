@@ -81,8 +81,8 @@ export default function Heightmap({
                 opacity={1}
                 onMouseEnter={(e) => {
                     setHoveredCell({
-                        xLabel: "group " + item.x,
-                        yLabel: "group " + item.y,
+                        xLabel: item.x.toString(),
+                        yLabel: item.y.toString(),
                         xPos: x + xScale.bandwidth() + MARGIN.left,
                         yPos: y + xScale.bandwidth() / 2 + MARGIN.top,
                         value: Math.round(item.valueOf * 100) / 100,
