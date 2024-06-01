@@ -8,7 +8,7 @@
     "jsx": "react-jsx",
     "allowJs": true,
     "paths": {
-      "tytonic": ["build/release.d.ts"]
+      "tytonic": ["./build/release.d.ts"]
     },
     // Bundler mode
     "moduleResolution": "bundler",
@@ -26,6 +26,6 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["src", "build"],
+  "include": ["src", "build", "tests"],
   "references": [{"path": "./tsconfig.node.json"}]
 }
