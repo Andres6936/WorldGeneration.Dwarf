@@ -35,8 +35,6 @@ for (let i = 0; i < 250; i++) {
 }
 
 const valuesOf = getValuesOfHeightmap(heightmap);
-console.log(valuesOf)
-
 const heightmapOf = new ReadonlyArray2D(valuesOf, WORLD_WIDTH, WORLD_HEIGHT);
 
 
