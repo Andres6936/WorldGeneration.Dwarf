@@ -42,7 +42,7 @@ export default function App({
             .padding(0.01);
     }, [valueOf, height]);
 
-    var colorScale = d3
+    const colorScale = d3
         .scaleSequential()
         .interpolator(d3.interpolateInferno)
         .domain([min, max]);
@@ -59,16 +59,13 @@ export default function App({
         return (
             <rect
                 key={i}
-                r={4}
                 x={xScale(d.x.toString())}
                 y={yScale(d.y.toString())}
                 width={xScale.bandwidth()}
                 height={yScale.bandwidth()}
                 opacity={1}
                 fill={colorScale(d.valueOf)}
-                rx={5}
-                stroke={"white"}
-                cursor="pointer"
+                stroke="white"
             />
         );
     });
