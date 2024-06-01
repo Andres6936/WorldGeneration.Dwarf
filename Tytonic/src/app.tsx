@@ -4,7 +4,7 @@ import genBins, {type Bin, type Bins} from '@visx/mock-data/lib/generators/genBi
 import {scaleLinear} from '@visx/scale';
 import {HeatmapRect} from '@visx/heatmap';
 import {getSeededRandom} from '@visx/mock-data';
-import {newHeightmap, addHillToHeightmap, getValuesOfHeightmap} from "tytonic";
+// import {newHeightmap, addHillToHeightmap, getValuesOfHeightmap} from "tytonic";
 
 const cool1 = 'red';
 const cool2 = 'yellow';
@@ -52,38 +52,38 @@ export type HeatmapProps = {
 
 const defaultMargin = { top: 20, left: 20, right: 20, bottom: 110 };
 
-const WORLD_WIDTH = 80;
-const WORLD_HEIGHT = 50
-
-/**
- * Returns a random integer between min (inclusive) and max (inclusive).
- * The value is no lower than min (or the next integer greater than min
- * if min isn't an integer) and no greater than max (or the next integer
- * lower than max if max isn't an integer).
- * Using Math.round() will give you a non-uniform distribution!
- *
- * Ref: https://stackoverflow.com/a/1527820
- */
-function getRandomInt(min: number, max: number) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-const heightmap = newHeightmap(WORLD_WIDTH, WORLD_HEIGHT);
-
-for (let i = 0; i < 250; i++) {
-    addHillToHeightmap(heightmap,
-        getRandomInt(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
-        getRandomInt(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10),
-        getRandomInt(12, 16),
-        getRandomInt(6, 10)
-    );
-}
-
-const valuesOf = getValuesOfHeightmap(heightmap);
-
-console.log(valuesOf)
+// const WORLD_WIDTH = 80;
+// const WORLD_HEIGHT = 50
+//
+// /**
+//  * Returns a random integer between min (inclusive) and max (inclusive).
+//  * The value is no lower than min (or the next integer greater than min
+//  * if min isn't an integer) and no greater than max (or the next integer
+//  * lower than max if max isn't an integer).
+//  * Using Math.round() will give you a non-uniform distribution!
+//  *
+//  * Ref: https://stackoverflow.com/a/1527820
+//  */
+// function getRandomInt(min: number, max: number) {
+//     min = Math.ceil(min);
+//     max = Math.floor(max);
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
+//
+// const heightmap = newHeightmap(WORLD_WIDTH, WORLD_HEIGHT);
+//
+// for (let i = 0; i < 250; i++) {
+//     addHillToHeightmap(heightmap,
+//         getRandomInt(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
+//         getRandomInt(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10),
+//         getRandomInt(12, 16),
+//         getRandomInt(6, 10)
+//     );
+// }
+//
+// const valuesOf = getValuesOfHeightmap(heightmap);
+//
+// console.log(valuesOf)
 
 export default function App({
   width,
