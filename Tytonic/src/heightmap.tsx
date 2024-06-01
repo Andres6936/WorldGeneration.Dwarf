@@ -20,6 +20,7 @@ export type HeatmapProps = {
     setHoveredCell: (hoveredCell: InteractionData | null) => void;
 };
 
+// Ref: https://www.react-graph-gallery.com/heatmap
 export default function Heightmap({
                                       width,
                                       height,
