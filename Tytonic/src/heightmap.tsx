@@ -79,7 +79,7 @@ export default function Heightmap({
                 width={xScale.bandwidth()}
                 height={yScale.bandwidth()}
                 opacity={1}
-                onMouseEnter={(e) => {
+                onMouseEnter={() => {
                     setHoveredCell({
                         xLabel: item.x.toString(),
                         yLabel: item.y.toString(),
