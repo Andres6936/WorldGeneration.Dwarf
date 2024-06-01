@@ -54,7 +54,6 @@ const defaultMargin = { top: 20, left: 20, right: 20, bottom: 110 };
 export default function App({
   width,
   height,
-  events = false,
   margin = defaultMargin,
 }: HeatmapProps) {
   // bounds
@@ -91,12 +90,6 @@ export default function App({
                   x={bin.x}
                   y={bin.y}
                   fill={bin.color}
-                  fillOpacity={bin.opacity}
-                  onClick={() => {
-                    if (!events) return;
-                    const { row, column } = bin;
-                    alert(JSON.stringify({ row, column, bin: bin.bin }));
-                  }}
                 />
               )),
             )
