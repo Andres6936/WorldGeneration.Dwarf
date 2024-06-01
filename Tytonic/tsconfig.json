@@ -7,7 +7,9 @@
     "moduleDetection": "force",
     "jsx": "react-jsx",
     "allowJs": true,
-
+    "paths": {
+      "tytonic": ["build/release.d.ts"]
+    },
     // Bundler mode
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
