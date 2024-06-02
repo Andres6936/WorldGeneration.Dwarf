@@ -1,4 +1,5 @@
 import {ImmutableTuple} from "./immutable-tuple";
+import {Noise} from "./noise";
 
 class Heightmap {
   private readonly width: i32;
@@ -82,6 +83,19 @@ class Heightmap {
     if (x < 0 || x >= this.width) return false;
     if (y < 0 || y >= this.height) return false;
     return true;
+  }
+
+  public addFbm(noise: Noise, mul_x: f32, mul_y: f32, add_x: f32, add_y: f32, octaves: f32, delta: f32, scale: f32): void {
+    const x_coefficient = mul_x / this.width;
+    const y_coefficient = mul_y / this.height;
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        let f = new Array<f32>(2);
+        f[0] = (x + add_x) * x_coefficient;
+        f[1] = (y + add_y) * y_coefficient;
+        this.values[x + y * this.width] *= delta + noise.getFbm(f, octaves) * scale;
+      }
+    }
   }
 }
 
