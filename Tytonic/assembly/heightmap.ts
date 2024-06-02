@@ -18,12 +18,24 @@ export class Heightmap {
         return heightmap;
     }
 
+    public getWidth(): i32 {
+        return this.width;
+    }
+
+    public getHeight(): i32 {
+        return this.height;
+    }
+
     private setValue(target: Float32Array): void {
         this.values.set(target);
     }
 
     public getValues(): Float32Array {
         return this.values;
+    }
+
+    public setAt(x: i32, y: i32, valueOf: f32): void {
+        this.values[x + y * this.width] = valueOf;
     }
 
     public addHill(hx: f32, hy: f32, h_radius: f32, h_height: f32): void {
@@ -98,7 +110,7 @@ export class Heightmap {
         }
     }
 
-    private static isSameSize(origin: Heightmap, destine: Heightmap) : boolean {
+    private static isSameSize(origin: Heightmap, destine: Heightmap): boolean {
         return origin.width == destine.width && origin.height == destine.height;
     }
 

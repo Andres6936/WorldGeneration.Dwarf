@@ -4,6 +4,7 @@ import Heightmap, {type InteractionData} from './heightmap.tsx'
 import './index.css'
 import {useMeasure} from "@uidotdev/usehooks";
 import {
+    poleGen,
     addHillToHeightmap,
     addFbmHeightmap,
     getValuesOfHeightmap,
@@ -76,6 +77,12 @@ multiplyHeightmap(hm, noiseHm);
 const valueOfMultiplyNoise = getValuesOfHeightmap(hm);
 const multiplyNoiseHmOf = new ReadonlyArray2D(valueOfMultiplyNoise, WORLD_WIDTH, WORLD_HEIGHT);
 
+console.log('- Apply Simplex -')
+
+poleGen(hm, true, true);
+const valueOfPoleGen = getValuesOfHeightmap(hm);
+const poleGenOf = new ReadonlyArray2D(valueOfPoleGen, WORLD_WIDTH, WORLD_HEIGHT);
+
 function App() {
     const [hoveredCell, setHoveredCell] = useState<InteractionData | null>(null);
     const [ref, {width, height}] = useMeasure();
@@ -85,6 +92,7 @@ function App() {
             <Heightmap valueOf={hmOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
             <Heightmap valueOf={noiseHmOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
             <Heightmap valueOf={multiplyNoiseHmOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
+            <Heightmap valueOf={poleGenOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
             <Tooltip interactionData={hoveredCell} width={width!} height={height!}/>
         </main>
     )
