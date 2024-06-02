@@ -1,10 +1,10 @@
 // import { newHeightmap, addHillToHeightmap, getValuesOfHeightmap } from "../build/debug.js";
 // import {ReadonlyArray2D} from "../src/array2d.ts";
 
-import {getBufferNoise, getMapNoise, newNoise} from "../build/debug.js";
+import {getBufferNoise, newHeightmap, getMapNoise, newNoise, addFbmHeightmap, getValuesOfHeightmap} from "../build/debug";
 
-// const MAP_WIDTH = 3;
-// const MAP_HEIGHT = 3;
+const MAP_WIDTH = 80;
+const MAP_HEIGHT = 50;
 //
 // const heightmap = newHeightmap(MAP_WIDTH, MAP_HEIGHT);
 // // addHillToHeightmap(heightmap, 40, 25, 12, 6);
@@ -21,8 +21,14 @@ import {getBufferNoise, getMapNoise, newNoise} from "../build/debug.js";
 //     console.log(valueOf);
 // })
 
-const noise = newNoise(2, 0.5, 2.0);
-// const buffer = getBufferNoise(noise)
+const noiseHm = newHeightmap(MAP_WIDTH, MAP_HEIGHT)
+const noise2D = newNoise(2, 0.5, 2.0);
+
+// const buffer = getBufferNoise(noise2D)
 // console.log(buffer)
-const map = getMapNoise(noise);
-console.log(map)
+// const map = getMapNoise(noise);
+// console.log(map)
+
+addFbmHeightmap(noiseHm, noise2D, 6, 6, 0, 0, 32, 1, 1);
+const valueOfNoiseHm = getValuesOfHeightmap(noiseHm);
+console.log(valueOfNoiseHm);
