@@ -12,6 +12,13 @@ To visualize the Heightmap in the frontend, is used React
 and D3.js, the tutorial used for recreate the Heightmap
 with D3.js is [this](https://www.react-graph-gallery.com/heatmap).
 
+### Showcase
+
+![First](./docs/First.png)
+![Second](./docs/Second.png)
+![Third](./docs/Third.png)
+![Four](./docs/Four.png)
+
 ### Instructions
 
 To install dependencies:
