@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import Heightmap, {type InteractionData} from './heightmap.tsx'
 import './index.css'
 import {useMeasure} from "@uidotdev/usehooks";
-import {addHillToHeightmap, getValuesOfHeightmap, newHeightmap, newNoise, normalizeHeightmap} from "tytonic";
+import {addHillToHeightmap, addFbmHeightmap, getValuesOfHeightmap, newHeightmap, newNoise, normalizeHeightmap} from "tytonic";
 import {ReadonlyArray2D} from "./array2d.ts";
 import {Tooltip} from "./tooltip.tsx";
 
@@ -54,12 +54,14 @@ for (let i = 0; i < 1000; i++) {
 console.log('- Small Hills -')
 
 normalizeHeightmap(hm, 0.0, 1.0)
-
 const valuesOfHm = getValuesOfHeightmap(hm);
 const hmOf = new ReadonlyArray2D(valuesOfHm, WORLD_WIDTH, WORLD_HEIGHT);
 
 const noiseHm = newHeightmap(WORLD_WIDTH, WORLD_HEIGHT);
 const noise2D = newNoise(2, NOISE_DEFAULT_HURST, NOISE_DEFAULT_LACUNARITY);
+addFbmHeightmap(noiseHm, noise2D, 6, 6, 0, 0, 32, 1, 1);
+const valueOfNoiseHm = getValuesOfHeightmap(noiseHm);
+const noiseHmOf = new ReadonlyArray2D(valueOfNoiseHm, WORLD_WIDTH, WORLD_HEIGHT);
 
 function App() {
     const [hoveredCell, setHoveredCell] = useState<InteractionData | null>(null);
