@@ -93,7 +93,7 @@ export class Heightmap {
                 let f = new Array<f32>(2);
                 f[0] = ((x as f32) + add_x) * x_coefficient;
                 f[1] = ((y as f32) + add_y) * y_coefficient;
-                this.values[x + y * this.width] *= delta + noise.getFbm(f, octaves) * scale;
+                this.values[x + y * this.width] += delta + noise.getFbm(f, octaves) * scale;
             }
         }
     }
