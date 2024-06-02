@@ -3,7 +3,14 @@ import ReactDOM from 'react-dom/client'
 import Heightmap, {type InteractionData} from './heightmap.tsx'
 import './index.css'
 import {useMeasure} from "@uidotdev/usehooks";
-import {addHillToHeightmap, addFbmHeightmap, getValuesOfHeightmap, newHeightmap, newNoise, normalizeHeightmap} from "tytonic";
+import {
+    addHillToHeightmap,
+    addFbmHeightmap,
+    getValuesOfHeightmap,
+    newHeightmap,
+    newNoise,
+    normalizeHeightmap
+} from "tytonic";
 import {ReadonlyArray2D} from "./array2d.ts";
 import {Tooltip} from "./tooltip.tsx";
 
@@ -43,7 +50,7 @@ for (let i = 0; i < 250; i++) {
 console.log('- Main Hills -')
 
 for (let i = 0; i < 1000; i++) {
-     addHillToHeightmap(hm,
+    addHillToHeightmap(hm,
         getRandomInt(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
         getRandomInt(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10),
         getRandomInt(2, 4),
@@ -71,6 +78,7 @@ function App() {
     return (
         <main style={{position: "relative", height: "100%"}} ref={ref}>
             <Heightmap valueOf={hmOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
+            <Heightmap valueOf={noiseHmOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
             <Tooltip interactionData={hoveredCell} width={width!} height={height!}/>
         </main>
     )
