@@ -60,6 +60,7 @@ const hmOf = new ReadonlyArray2D(valuesOfHm, WORLD_WIDTH, WORLD_HEIGHT);
 const noiseHm = newHeightmap(WORLD_WIDTH, WORLD_HEIGHT);
 const noise2D = newNoise(2, NOISE_DEFAULT_HURST, NOISE_DEFAULT_LACUNARITY);
 addFbmHeightmap(noiseHm, noise2D, 6, 6, 0, 0, 32, 1, 1);
+normalizeHeightmap(noiseHm, 0.0, 1.0)
 const valueOfNoiseHm = getValuesOfHeightmap(noiseHm);
 const noiseHmOf = new ReadonlyArray2D(valueOfNoiseHm, WORLD_WIDTH, WORLD_HEIGHT);
 
