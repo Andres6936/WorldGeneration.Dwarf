@@ -97,4 +97,18 @@ export class Heightmap {
             }
         }
     }
+
+    private static isSameSize(origin: Heightmap, destine: Heightmap) : boolean {
+        return origin.width == destine.width && origin.height == destine.height;
+    }
+
+    public multiply(heightmap: Heightmap): void {
+        if (!Heightmap.isSameSize(this, heightmap)) {
+            return;
+        }
+
+        for (let i = 0; i < this.width * this.height; i++) {
+            this.values[i] *= heightmap.values[i];
+        }
+    }
 }

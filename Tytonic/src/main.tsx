@@ -9,7 +9,8 @@ import {
     getValuesOfHeightmap,
     newHeightmap,
     newNoise,
-    normalizeHeightmap
+    normalizeHeightmap,
+    multiplyHeightmap,
 } from "tytonic";
 import {ReadonlyArray2D} from "./array2d.ts";
 import {Tooltip} from "./tooltip.tsx";
@@ -71,6 +72,10 @@ normalizeHeightmap(noiseHm, 0.0, 1.0)
 const valueOfNoiseHm = getValuesOfHeightmap(noiseHm);
 const noiseHmOf = new ReadonlyArray2D(valueOfNoiseHm, WORLD_WIDTH, WORLD_HEIGHT);
 
+multiplyHeightmap(hm, noiseHm);
+const valueOfMultiplyNoise = getValuesOfHeightmap(hm);
+const multiplyNoiseHmOf = new ReadonlyArray2D(valueOfMultiplyNoise, WORLD_WIDTH, WORLD_HEIGHT);
+
 function App() {
     const [hoveredCell, setHoveredCell] = useState<InteractionData | null>(null);
     const [ref, {width, height}] = useMeasure();
@@ -79,6 +84,7 @@ function App() {
         <main style={{position: "relative", height: "100%"}} ref={ref}>
             <Heightmap valueOf={hmOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
             <Heightmap valueOf={noiseHmOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
+            <Heightmap valueOf={multiplyNoiseHmOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
             <Tooltip interactionData={hoveredCell} width={width!} height={height!}/>
         </main>
     )

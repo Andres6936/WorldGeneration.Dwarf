@@ -17,6 +17,10 @@ export function normalizeHeightmap(target: Heightmap, min: f32, max: f32): void 
     target.normalize(min, max);
 }
 
+export function multiplyHeightmap(target: Heightmap, origin: Heightmap): void {
+    target.multiply(origin);
+}
+
 export function getValuesOfHeightmap(target: Heightmap): Float32Array {
     return target.getValues();
 }
