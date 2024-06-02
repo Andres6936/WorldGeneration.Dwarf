@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client'
 import Heightmap, {type InteractionData} from './heightmap.tsx'
 import './index.css'
 import {useMeasure} from "@uidotdev/usehooks";
-import {addHillToHeightmap, getValuesOfHeightmap, newHeightmap, normalizeHeightmap} from "tytonic";
+import {addHillToHeightmap, getValuesOfHeightmap, newHeightmap, newNoise, normalizeHeightmap} from "tytonic";
 import {ReadonlyArray2D} from "./array2d.ts";
 import {Tooltip} from "./tooltip.tsx";
 
 const WORLD_WIDTH = 80;
 const WORLD_HEIGHT = 50;
+const NOISE_DEFAULT_HURST = 0.5;
+const NOISE_DEFAULT_LACUNARITY = 2.0;
 
 /**
  * Returns a random integer between min (inclusive) and max (inclusive).
@@ -27,10 +29,10 @@ function getRandomInt(min: number, max: number) {
 
 console.log('* World Gen START *')
 
-const heightmap = newHeightmap(WORLD_WIDTH, WORLD_HEIGHT);
+const hm = newHeightmap(WORLD_WIDTH, WORLD_HEIGHT);
 
 for (let i = 0; i < 250; i++) {
-    addHillToHeightmap(heightmap,
+    addHillToHeightmap(hm,
         getRandomInt(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
         getRandomInt(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10),
         getRandomInt(12, 16),
@@ -41,7 +43,7 @@ for (let i = 0; i < 250; i++) {
 console.log('- Main Hills -')
 
 for (let i = 0; i < 1000; i++) {
-     addHillToHeightmap(heightmap,
+     addHillToHeightmap(hm,
         getRandomInt(WORLD_WIDTH / 10, WORLD_WIDTH - WORLD_WIDTH / 10),
         getRandomInt(WORLD_HEIGHT / 10, WORLD_HEIGHT - WORLD_HEIGHT / 10),
         getRandomInt(2, 4),
@@ -51,10 +53,13 @@ for (let i = 0; i < 1000; i++) {
 
 console.log('- Small Hills -')
 
-normalizeHeightmap(heightmap, 0.0, 1.0)
+normalizeHeightmap(hm, 0.0, 1.0)
 
-const valuesOf = getValuesOfHeightmap(heightmap);
-const heightmapOf = new ReadonlyArray2D(valuesOf, WORLD_WIDTH, WORLD_HEIGHT);
+const valuesOfHm = getValuesOfHeightmap(hm);
+const hmOf = new ReadonlyArray2D(valuesOfHm, WORLD_WIDTH, WORLD_HEIGHT);
+
+const noiseHm = newHeightmap(WORLD_WIDTH, WORLD_HEIGHT);
+const noise2D = newNoise(2, NOISE_DEFAULT_HURST, NOISE_DEFAULT_LACUNARITY);
 
 function App() {
     const [hoveredCell, setHoveredCell] = useState<InteractionData | null>(null);
@@ -62,7 +67,7 @@ function App() {
 
     return (
         <main style={{position: "relative", height: "100%"}} ref={ref}>
-            <Heightmap valueOf={heightmapOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
+            <Heightmap valueOf={hmOf} width={width!} height={height!} setHoveredCell={setHoveredCell}/>
             <Tooltip interactionData={hoveredCell} width={width!} height={height!}/>
         </main>
     )
